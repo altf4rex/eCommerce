@@ -1,5 +1,6 @@
 import Header from './Header.js'
 import Menu from './Menu.js'
+import HomePage from './HomePage.js'
 
 const categories = [
   {name: "Bakery"}, 
@@ -20,8 +21,8 @@ function App() {
        basketCounter={basketCounter}
       />
       <Menu categories={categories}/>
+      <HomePage categories={categories}/>
       {/* 
-      <HomePage />
       <Category /> 
       <Detail />
       <Checkout />
