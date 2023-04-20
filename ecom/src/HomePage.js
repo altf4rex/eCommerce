@@ -1,9 +1,18 @@
 import React from 'react'
 import FirstComponetHome from './FirstComponetHome.js'
-const HomePage = ({categories}) => {
+import SecondComponetHome from './SecondComponetHome.js'
+const HomePage = ({categories, products, categoriesContent, productsContent, productsCard}) => {
   return (
-    <div>
-        <FirstComponetHome categories={categories}/>
+    <div className='home-page'>
+        <FirstComponetHome
+         categories={categories}
+         categoriesContent={categoriesContent}
+         />
+        <SecondComponetHome 
+          products={products}
+          productsContent={productsContent}
+          productsCard={productsCard}
+        />
     </div>
   )
 }
