@@ -360,17 +360,15 @@ cursor: pointer;
 }
 
 .reviews__content{
- 
   display: flex;
   margin: 0 -45px;
   position: relative;
-  
-  
 }
 
 .reviews__cards{
   display: flex;
   position: relative;
+  padding-bottom: 6px;
   overflow: auto;
   scroll-behavior: smooth;
 }

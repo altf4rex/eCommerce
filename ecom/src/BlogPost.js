@@ -10,7 +10,7 @@ import PostPhotoSalat from "../src/assets/post-photo-salat.jpg";
 const BlogPost = () => {
   const header = { header: "Read our Blog posts", button: "Go to Blog" };
   return (
-    <div>
+    <div style={{margin: "64px 0"}}>
       <SectionButton header={header} />
       <div className="post">
         <a href="#" className="post__left">

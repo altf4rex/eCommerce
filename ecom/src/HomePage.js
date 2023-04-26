@@ -4,6 +4,7 @@ import SecondComponetHome from './SecondComponetHome.js'
 import ThirdComponentHome from './ThirdComponentHome.js'
 import Reviews from './Reviews.js'
 import BlogPost from './BlogPost.js'
+import Footer from './components/Footer.js'
 const HomePage = ({categories, products, categoriesContent, productsContent, productsCard, productsContentFermers, farmerProducts, reviewContent}) => {
   return (
     <div className='home-page'>
@@ -23,6 +24,7 @@ const HomePage = ({categories, products, categoriesContent, productsContent, pro
         />
         <Reviews reviewContent={reviewContent} />
         <BlogPost /> 
+        <Footer />
     </div>
   )
 }
