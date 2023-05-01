@@ -1,0 +1,19 @@
+.page-navigation{
+    display: flex;
+    padding: 16px 0;
+}
+
+.page-navigation__link{
+    font-family: 'Open Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 16px;
+color: #A9A9A9;
+text-decoration: none;
+margin-right: 4px;
+}
+
+.active {
+color: #151515;
+}

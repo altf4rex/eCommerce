@@ -1,9 +1,14 @@
-import Header from './Header.js'
-import Menu from './Menu.js'
-import HomePage from './HomePage.js'
-import Photo from '../src/assets/photo.jpg'
+import Header from './Header.js';
+import Menu from './Menu.js';
+import HomePage from './HomePage.js';
+import Photo from '../src/assets/photo.jpg';
+import Category from './components/Category/Category.js';
+import {Routes, Route} from 'react-router-dom';
+import Footer from './components/Footer/Footer.js'
+import { useState } from 'react';
+
 const categories = [
-  {name: "Bakery"}, 
+  {name: "Bakery", content: "dgfsdg"}, 
   {name: "Fruit and vegetables"}, 
   {name: "Meat and fish"}, 
   {name: "Drinks"}, 
@@ -64,28 +69,41 @@ const reviewContent = [
   {name: "random dude 5", comment: "“ This is an super space for your customers qoute. Don’t worry it works smooth as pie. You will get all what you need by writiing a text here “", src: Photo} 
 ]
 
+
+
 const basketCounter = 4;
 
 function App() {
+  const [filteredCategory, setFilteredCategory] = useState(null);
+  const handleCategory = (e) => {
+    const category = e.target.textContent;
+    setFilteredCategory(categories.filter(c => c.name === category));
+  };
+  
   return (
     <div className="container">
       <Header 
        categories={categories} 
        basketCounter={basketCounter}
       />
-      <Menu categories={categories}/>
-      <HomePage 
-      categories={categories}
-      products={products}
-      categoriesContent={categoriesContent}
-      productsContent={productsContent}
-      productsCard={productsCard}
-      productsContentFermers={productsContentFermers}
-      farmerProducts={farmerProducts}
-      reviewContent={reviewContent}
-       />
+      <Menu 
+      categories={categories} 
+      handleCategory={handleCategory}/>
+      <Routes>
+        <Route path='/' element={<HomePage 
+        categories={categories}
+        products={products}
+        categoriesContent={categoriesContent}
+        productsContent={productsContent}
+        productsCard={productsCard}
+        productsContentFermers={productsContentFermers}
+        farmerProducts={farmerProducts}
+        reviewContent={reviewContent}
+       />}/>
+        <Route path='/category' element={<Category filteredCategory={filteredCategory}/> }/>
+      </Routes>
+      <Footer />
       {/* 
-      <Category /> 
       <Detail />
       <Checkout />
       <Blog /> 

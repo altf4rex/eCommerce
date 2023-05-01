@@ -1,13 +1,27 @@
-import React from 'react'
-import Arrow from '../src/assets/arrow-down.svg'
-const Menu = ({categories}) => {
+import React from 'react';
+import Arrow from '../src/assets/arrow-down.svg';
+import { Link } from 'react-router-dom';
+
+
+const Menu = ({categories, handleCategory}) => {
+  
   return (
     <div className='menu'>
         {
          categories.map((c) =>
-            <div className='menu__category' value={c.name} key={c.name}>{c.name} <img style={{marginBottom: "2px"}} src={Arrow} alt="" /></div>
+         <Link to='/category'
+             onClick={handleCategory}
+             
+             className='menu__category' 
+             value={c.name}
+             key={c.name}>
+             {c.name}
+             <img 
+             style={{marginBottom: "2px", marginLeft: "2px"} } 
+             src={Arrow} alt="" />
+            </Link>
          )
-        }  
+        }
     </div>
   )
 }
