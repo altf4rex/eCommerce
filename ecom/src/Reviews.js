@@ -2,6 +2,7 @@ import React from "react";
 import ScrollLeft from "../src/assets/arrow-left-scroll.svg";
 import ScrollRight from "../src/assets/arrow-right-scroll.svg";
 import SectionButton from "./SectionButton.js"
+
 const Reviews = ({ reviewContent }) => {
   const handleClickLeft = () => {
     document.getElementById('cards-scroll').scrollBy(-300, 0); 

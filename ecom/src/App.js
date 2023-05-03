@@ -5,7 +5,7 @@ import Photo from '../src/assets/photo.jpg';
 import Category from './components/Category/Category.js';
 import {Routes, Route} from 'react-router-dom';
 import Footer from './components/Footer/Footer.js'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const categories = [
   {name: "Bakery", content: "dgfsdg"}, 
@@ -74,12 +74,44 @@ const reviewContent = [
 const basketCounter = 4;
 
 function App() {
-  const [filteredCategory, setFilteredCategory] = useState(null);
-  const handleCategory = (e) => {
-    const category = e.target.textContent;
-    setFilteredCategory(categories.filter(c => c.name === category));
-  };
+  // const [filteredCategory, setFilteredCategory] = useState(null);
+  // const handleCategory = (e) => {
+  //   setFilteredCategory(categories.filter(c => c.name === e.target.textContent));
+  // };
+
+
+  // idk
+
+  // const [filteredCategory, setFilteredCategory] = useState(null);
+  // const handleCategory = (e) => {
+  //   const category = categories.filter(c => c.name === e.target.textContent)[0];
+  //   localStorage.setItem('selectedCategory', JSON.stringify(category));
+  //   setFilteredCategory(category);
+  // };
   
+  // useEffect(() => {
+  //   const storedCategory = JSON.parse(localStorage.getItem('selectedCategory'));
+  //   setFilteredCategory(storedCategory);
+
+  //   return () => {
+  //     filteredCategory(null);
+  //   };
+  // }, [filteredCategory]);
+
+
+
+  const handleCategory = (e) => {
+    const filtered = categories.filter(c => c.name === e.target.textContent);
+    setFilteredCategory(filtered);
+    localStorage.setItem('filteredCategory', JSON.stringify(filtered));
+  };
+
+  const [filteredCategory, setFilteredCategory] = useState(JSON.parse(localStorage.getItem('filteredCategory')) || null);
+  
+  useEffect(() => {
+    return () => localStorage.removeItem('filteredCategory');
+  }, []);
+
   return (
     <div className="container">
       <Header 
