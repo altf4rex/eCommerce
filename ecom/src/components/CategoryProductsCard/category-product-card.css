@@ -1,0 +1,140 @@
+.category-products-card__card{
+    display: flex;
+    height: 280px;
+    margin-bottom: 32px;
+    background: #FFFFFF;
+border: 1px solid #D1D1D1;
+border-radius: 12px;
+}
+
+.category-products-card__card-left{
+    height: 280px;
+    width: 268px;
+    border-radius: 12px;
+    background: #F9F9F9;
+}
+
+.category-products-card__card-centre{
+    margin: 32px 64px 36px 32px;
+}
+
+.category-products-card__card-name{
+    
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 27px;
+color: #151515;
+}
+
+.category-products-card__card-description{
+    margin: 4px 0 8px 0;
+    font-family: 'Open Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 16px;
+
+color: #575757;
+}
+
+.category-products-card__card-info{
+    display: flex;
+    margin-top: 13px;
+    font-family: 'Open Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 19px;
+
+color: #A9A9A9;
+}
+
+.card-info-gap {
+    margin-top: 12px;
+}
+
+.add-green{
+    color: #6A983C;
+}
+
+.category-products-card__card-right{
+    margin: 32px;
+}
+
+.category-products-card__card-discount-price{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 27px;
+
+color: #151515;
+}
+
+.category-products-card__card-price{
+    
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 18px;
+
+text-decoration-line: line-through;
+
+
+color: #A9A9A9;
+}
+
+.category-products-card__card-shipping{
+    margin-top: 12px;
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 18px;
+color: #A9A9A9;
+}
+
+.category-products-card__card-shipping-days{
+    font-family: 'Open Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 16px;
+color: #A9A9A9;
+
+}
+
+.category-products-card__card-button-detail{
+    margin-top: 26px;
+    padding: 12px 16px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 22px;
+    color: #FFFFFF;
+    background: #6A983C;
+border: 2px solid #46760A;
+border-radius: 12px;
+cursor: pointer;
+}
+
+.category-products-card__card-button-add{
+    margin-top: 12px;
+    padding: 6px 12px;
+    border-radius: 12px;
+
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 22px;
+
+color: #151515;
+background: #F5F5F5;
+cursor: pointer;
+}
+

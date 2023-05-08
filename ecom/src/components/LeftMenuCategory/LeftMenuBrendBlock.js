@@ -8,6 +8,7 @@ const LeftMenuBrendBlock = ({filter, handleToggleFilter}) => {
         <div className="left-menu__brands" key={f.brand}>
           <input
             type="checkbox"
+            style={{marginTop: "0.5px"}}
             className="left-menu__checkbox"
             name={f.brand}
             checked={f.checked}

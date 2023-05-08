@@ -1,7 +1,7 @@
 .left-menu{
     width: 268px;
     margin-right: 32px;
-    padding: 64px 0;
+
 }
 
 .left-menu__header{
@@ -62,6 +62,46 @@ border-radius: 12px;
     margin-right: 10px;
 }
 
-.left-menu__brands-name{
-    
+.left-menu__rating{
+    margin-top: 14px;
+}
+
+.left-menu-buttons{
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.left-menu-buttons__apply{
+    padding: 12px 16px;
+    margin-right: 46px;
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 22px;
+color: #FFFFFF;
+background: #6A983C;
+border: 2px solid #46760A;
+border-radius: 12px;
+cursor: pointer;
+}
+.left-menu-buttons__apply:hover{
+    background: #608d33;
+}
+.left-menu-buttons__reset{
+    padding: 6px 12px;
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 22px;
+color: #A9A9A9;
+background: #FFFFFF;
+border-radius: 12px;
+cursor: pointer;
+}
+
+.left-menu-buttons__reset:hover{
+    background: #ece6e6;
 }
