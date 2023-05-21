@@ -1,0 +1,28 @@
+.button{
+    padding: 16px 0;
+    text-align: center;
+}
+
+.button__more{
+    display: inline-block;
+    padding: 12px 16px;
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 22px;
+/* identical to box height */
+
+
+/* C1/J */
+
+color: #FFFFFF;
+
+text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+background: #6A983C;
+/* C2/B */
+
+border: 2px solid #46760A;
+border-radius: 12px;
+cursor: pointer;
+}

@@ -6,7 +6,8 @@ import Category from './components/Category/Category.js';
 import {Routes, Route} from 'react-router-dom';
 import Footer from './components/Footer/Footer.js'
 import { useState, useEffect } from 'react';
-
+import ProductDetail from './components/ProductDetail/ProductDetail.js';
+import RaitingFive from './assets/rating-4-black.svg'
 const categories = [
   {name: "Bakery", content: "dgfsdg"}, 
   {name: "Fruit and vegetables"}, 
@@ -69,7 +70,27 @@ const reviewContent = [
   {name: "random dude 5", comment: "“ This is an super space for your customers qoute. Don’t worry it works smooth as pie. You will get all what you need by writiing a text here “", src: Photo} 
 ]
 
-
+const productsCardList = [
+  {name: "Mango", description: "Space for a small product description", rating: RaitingFive, reviewCount: "1", fullDescription:"Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",  discountPrice: "36.99USD", price: "48.56USD", src:"https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg", fresheness: "New (Extra fresh)", farm: "Grocery Tarm Fields", deliveryArea: "Europe", stock: "320 pcs", sku: "76645",  category: "fruit", buyBy: ["pcs", "kgs", "box", "pack"], delivery: "2"},  
+  {name: "Mango1", description: "Space for a small product description", rating: RaitingFive, reviewCount: "1", fullDescription:"Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.", discountPrice: "36.99USD", price: "48.56USD", src:"https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg", fresheness: "New (Extra fresh)", farm: "Grocery Tarm Fields", deliveryArea: "Europe", stock: "320 pcs", sku: "76645",  category: "fruit", buyBy: ["pcs", "kgs", "box", "pack"], delivery: "2"}, 
+  {name: "Mango2", description: "Space for a small product description", rating: RaitingFive, reviewCount: "1", fullDescription:"Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.", discountPrice: "36.99USD", price: "48.56USD", src:"https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg", fresheness: "New (Extra fresh)", farm: "Grocery Tarm Fields", deliveryArea: "Europe", stock: "320 pcs", sku: "76645",  category: "fruit", buyBy: ["pcs", "kgs", "box", "pack"], delivery: "2"}, 
+  {name: "Mango3", description: "Space for a small product description", rating: RaitingFive, reviewCount: "1", fullDescription:"Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.", discountPrice: "36.99USD", price: "48.56USD", src:"https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg", fresheness: "New (Extra fresh)", farm: "Grocery Tarm Fields", deliveryArea: "Europe", stock: "320 pcs", sku: "76645",  category: "fruit", buyBy: ["pcs", "kgs", "box", "pack"], delivery: "2"}, 
+  {name: "Mango4", description: "Space for a small product description", rating: RaitingFive, reviewCount: "1", fullDescription:"Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.", discountPrice: "36.99USD", price: "48.56USD", src:"https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg", fresheness: "New (Extra fresh)", farm: "Grocery Tarm Fields", deliveryArea: "Europe", stock: "320 pcs", sku: "76645",  category: "fruit", buyBy: ["pcs", "kgs", "box", "pack"], delivery: "2"}, 
+  {name: "Mango5", description: "Space for a small product description", rating: RaitingFive, reviewCount: "1", fullDescription:"Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.", discountPrice: "36.99USD", price: "48.56USD", src:"https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg", fresheness: "New (Extra fresh)", farm: "Grocery Tarm Fields", deliveryArea: "Europe", stock: "320 pcs", sku: "76645",  category: "fruit", buyBy: ["pcs", "kgs", "box", "pack"], delivery: "2"}, 
+  {name: "Mango6", description: "Space for a small product description", rating: RaitingFive, reviewCount: "1", fullDescription:"Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.", discountPrice: "36.99USD", price: "48.56USD", src:"https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg", fresheness: "New (Extra fresh)", farm: "Grocery Tarm Fields", deliveryArea: "Europe", stock: "320 pcs", sku: "76645",  category: "fruit", buyBy: ["pcs", "kgs", "box", "pack"], delivery: "2"}, 
+  {name: "Mango7", description: "Space for a small product description", rating: RaitingFive, reviewCount: "1", fullDescription:"Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.", discountPrice: "36.99USD", price: "48.56USD", src:"https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg", fresheness: "New (Extra fresh)", farm: "Grocery Tarm Fields", deliveryArea: "Europe", stock: "320 pcs", sku: "76645",  category: "fruit", buyBy: ["pcs", "kgs", "box", "pack"], delivery: "2"}, 
+  {name: "Mango8", description: "Space for a small product description", rating: RaitingFive, reviewCount: "1", fullDescription:"Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.", discountPrice: "36.99USD", price: "48.56USD", src:"https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg", fresheness: "New (Extra fresh)", farm: "Grocery Tarm Fields", deliveryArea: "Europe", stock: "320 pcs", sku: "76645",  category: "fruit", buyBy: ["pcs", "kgs", "box", "pack"], delivery: "2"}, 
+  {name: "Mango9", description: "Space for a small product description", rating: RaitingFive, reviewCount: "1", fullDescription:"Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.", discountPrice: "36.99USD", price: "48.56USD", src:"https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg", fresheness: "New (Extra fresh)", farm: "Grocery Tarm Fields", deliveryArea: "Europe", stock: "320 pcs", sku: "76645",  category: "fruit", buyBy: ["pcs", "kgs", "box", "pack"], delivery: "2"}, 
+  {name: "Mango10", description: "Space for a small product description", rating: RaitingFive, reviewCount: "1", fullDescription:"Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.", discountPrice: "36.99USD", price: "48.56USD", src:"https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg", fresheness: "New (Extra fresh)", farm: "Grocery Tarm Fields", deliveryArea: "Europe", stock: "320 pcs", sku: "76645",  category: "fruit", buyBy: ["pcs", "kgs", "box", "pack"], delivery: "2"}, 
+  {name: "Mango11", description: "Space for a small product description", rating: RaitingFive, reviewCount: "1", fullDescription:"Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.", discountPrice: "36.99USD", price: "48.56USD", src:"https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg", fresheness: "New (Extra fresh)", farm: "Grocery Tarm Fields", deliveryArea: "Europe", stock: "320 pcs", sku: "76645",  category: "fruit", buyBy: ["pcs", "kgs", "box", "pack"], delivery: "2"}, 
+  {name: "Mango12", description: "Space for a small product description", rating: RaitingFive, reviewCount: "1", fullDescription:"Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.", discountPrice: "36.99USD", price: "48.56USD", src:"https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg", fresheness: "New (Extra fresh)", farm: "Grocery Tarm Fields", deliveryArea: "Europe", stock: "320 pcs", sku: "76645",  category: "fruit", buyBy: ["pcs", "kgs", "box", "pack"], delivery: "2"}, 
+  {name: "Mango13", description: "Space for a small product description", rating: RaitingFive, reviewCount: "1", fullDescription:"Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.", discountPrice: "36.99USD", price: "48.56USD", src:"https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg", fresheness: "New (Extra fresh)", farm: "Grocery Tarm Fields", deliveryArea: "Europe", stock: "320 pcs", sku: "76645",  category: "fruit", buyBy: ["pcs", "kgs", "box", "pack"], delivery: "2"}, 
+  {name: "Mango14", description: "Space for a small product description", rating: RaitingFive, reviewCount: "1", fullDescription:"Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.", discountPrice: "36.99USD", price: "48.56USD", src:"https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg", fresheness: "New (Extra fresh)", farm: "Grocery Tarm Fields", deliveryArea: "Europe", stock: "320 pcs", sku: "76645",  category: "fruit", buyBy: ["pcs", "kgs", "box", "pack"], delivery: "2"}, 
+  {name: "Mango15", description: "Space for a small product description", rating: RaitingFive, reviewCount: "1", fullDescription:"Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.", discountPrice: "36.99USD", price: "48.56USD", src:"https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg", fresheness: "New (Extra fresh)", farm: "Grocery Tarm Fields", deliveryArea: "Europe", stock: "320 pcs", sku: "76645",  category: "fruit", buyBy: ["pcs", "kgs", "box", "pack"], delivery: "2"}, 
+  {name: "Mango16", description: "Space for a small product description", rating: RaitingFive, reviewCount: "1", fullDescription:"Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.", discountPrice: "36.99USD", price: "48.56USD", src:"https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg", fresheness: "New (Extra fresh)", farm: "Grocery Tarm Fields", deliveryArea: "Europe", stock: "320 pcs", sku: "76645",  category: "fruit", buyBy: ["pcs", "kgs", "box", "pack"], delivery: "2"}, 
+  {name: "Mango17", description: "Space for a small product description", rating: RaitingFive, reviewCount: "1", fullDescription:"Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.", discountPrice: "36.99USD", price: "48.56USD", src:"https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg", fresheness: "New (Extra fresh)", farm: "Grocery Tarm Fields", deliveryArea: "Europe", stock: "320 pcs", sku: "76645",  category: "fruit", buyBy: ["pcs", "kgs", "box", "pack"], delivery: "2"}, 
+   
+]
 
 const basketCounter = 4;
 
@@ -111,6 +132,13 @@ function App() {
   useEffect(() => {
     return () => localStorage.removeItem('filteredCategory');
   }, []);
+  
+  const [currentProduct, setCurrentProduct] = useState([]);
+
+  const handleIdProduct = (e) => {
+    setCurrentProduct(productsCardList.filter(p => p.name === e.target.id))
+  }
+
 
   return (
     <div className="container">
@@ -132,11 +160,17 @@ function App() {
         farmerProducts={farmerProducts}
         reviewContent={reviewContent}
        />}/>
-        <Route path='/category' element={<Category filteredCategory={filteredCategory}/> }/>
+        <Route path='/category' element={
+        <Category
+        productsCardList={productsCardList} 
+        filteredCategory={filteredCategory}
+        handleIdProduct={handleIdProduct}
+        /> }/>
+        <Route path='/product' element={<ProductDetail currentProduct={currentProduct}/> }/>
       </Routes>
       <Footer />
+      
       {/* 
-      <Detail />
       <Checkout />
       <Blog /> 
       <BlogDetail />
