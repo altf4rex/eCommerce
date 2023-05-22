@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Add from "../../assets/ic-add.svg";
 import Like from "../../assets/ic-like-coral.svg";
 import Compare from "../../assets/ic-compare-coral.svg";
-const ProductDetail = ({ currentProduct }) => {
+import AdditionalDescription from "../AdditionalDescription/AdditionalDescription";
+import AdditionalReview from "../AdditionalReview/AdditionalReview";
+import AdditionalQuestion from "../AdditionalQuestion/AdditionalQuestion";
+const ProductDetail = ({currentProduct, reviewContent, questionContent}) => {
   const product = currentProduct[0];
+  const [currentInformation, setCurrentInformation] = useState(currentProduct);
+  
   return (
     <div className="product-detail">
       <img
@@ -53,7 +58,6 @@ const ProductDetail = ({ currentProduct }) => {
         <div style={{ display: "flex" }}>
           <p className="product-detail__discount-price">36.23 USD</p>
           <p className="product-detail__price">48.56 USD</p>
-
           <form className="product-detail__form">
             <input
               className="product-detail__input"
@@ -84,7 +88,28 @@ const ProductDetail = ({ currentProduct }) => {
             Compare
           </div>
         </div>
-        <div>
+        <div className="product-detail__addittionally">
+          <div className="product-detail__addittionally-buttons">
+            <div 
+            className="product-detail__addittionally-button-description"
+            onClick={() => setCurrentInformation(currentProduct)}>
+              Description
+              </div>
+            <div 
+            className="product-detail__addittionally-button-reviews"
+            onClick={() => setCurrentInformation(reviewContent)}>
+              Reviews
+            </div>
+            <div 
+            className="product-detail__addittionally-button-questions"
+            onClick={() => setCurrentInformation(questionContent)}>
+              Questions
+            </div>
+          </div>
+          
+          {currentInformation === currentProduct && <AdditionalDescription currentInformation={currentInformation}/>}
+          {currentInformation === reviewContent && <AdditionalReview currentInformation={currentInformation}/>}
+          {currentInformation === questionContent && <AdditionalQuestion currentInformation={currentInformation}/>}
           
         </div>
       </div>
