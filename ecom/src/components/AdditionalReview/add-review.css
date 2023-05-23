@@ -1,0 +1,58 @@
+.review{
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    overflow: auto;
+    padding-bottom: 6px;
+    scroll-behavior: smooth;
+  }
+  
+  
+
+  /* .review__cards::-webkit-scrollbar {
+    width: 0;
+  } */
+  
+  .review__card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 32px;
+    min-width: 369px;
+    
+    background: #FFFFFF;
+    border: 1px solid #F1F1F1;
+    border-radius: 12px;
+  }
+
+  .review__card-comment{
+   
+    text-align: center;
+    font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 22px;
+  color: #151515;
+  }
+  
+  .review__card-name{
+    margin-top: 10px;
+    text-align: center;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 18px;
+    color: #A9A9A9;
+  }
+  
+  .review__card-img{
+    
+    margin-top: 10px;
+    width: 48px;
+    height: 48px;
+   
+    
+  }

@@ -3,6 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+:active, :hover, :focus {
+  outline: 0;
+  outline-offset: 0;
+}
 body {
   background: #F9F9F9;
 }

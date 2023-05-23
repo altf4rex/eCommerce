@@ -151,6 +151,21 @@ const productsCardList = [
         name: "Folate (Bg)",
         quantity:  "19 μg",
         dv: "5 %"
+      }, 
+      {
+        name: "Vitamin C",
+        quantity:  "5.9 mg",
+        dv: "7 %"
+      },
+      {
+        name: "Vitamin E",
+        quantity:  "0.66 mg",
+        dv: "4 %"
+      },
+      {
+        name: "Vitamin K",
+        quantity:  "13.2",
+        dv: "13 %"
       }
     ]
   },
@@ -924,9 +939,9 @@ const productsCardList = [
 ];
 
 const questionContent = [
-  { question: "What about.... idk", id: Date.now(), answer: "mmm... idk" },
-  { question: "What about.... idk", id: Date.now(), answer: "mmm... idk" },
-  { question: "What about.... idk", id: Date.now(), answer: "mmm... idk" },
+  { question: "What about.... idk?", id: Date.now(), answer: "mmm... idk" },
+  { question: "What about.... idk?", id: Date.now(), answer: "mmm... idk" },
+  { question: "What about.... idk?", id: Date.now(), answer: "mmm... idk" },
 ];
 
 const basketCounter = 4;

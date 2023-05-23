@@ -50,7 +50,7 @@ const Footer = () => {
             }
            </div>
         </div>
-        <p className='footer-copyright'>Copyright © 2020 petrbilek.com</p>
+        <p className='footer-copyright'>Copyright © 2023 petrbilek.com</p>
     </footer>
   )
 }

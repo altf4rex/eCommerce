@@ -1,0 +1,21 @@
+.description{
+    padding: 18px 0;
+}
+
+.description-question{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 15px;
+line-height: 22px;
+color: #151515;
+}
+
+.description-answer{
+    font-family: 'Open Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 19px;
+color: #151515;
+}

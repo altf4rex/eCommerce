@@ -5,10 +5,17 @@ import Compare from "../../assets/ic-compare-coral.svg";
 import AdditionalDescription from "../AdditionalDescription/AdditionalDescription";
 import AdditionalReview from "../AdditionalReview/AdditionalReview";
 import AdditionalQuestion from "../AdditionalQuestion/AdditionalQuestion";
-const ProductDetail = ({currentProduct, reviewContent, questionContent}) => {
+import "./product-detail.css";
+const ProductDetail = ({ currentProduct, reviewContent, questionContent }) => {
   const product = currentProduct[0];
   const [currentInformation, setCurrentInformation] = useState(currentProduct);
-  
+  const [activeButton, setActiveButton] = useState("Description");
+
+  const handleButtonClick = (array, name) => {
+    setCurrentInformation(array);
+    setActiveButton(name);
+  };
+
   return (
     <div className="product-detail">
       <img
@@ -18,46 +25,48 @@ const ProductDetail = ({currentProduct, reviewContent, questionContent}) => {
       />
       <div className="product-detail__container">
         <h2 className="product-detail__name">{product.name}</h2>
-        <div>
-          <img src={product.rating} alt="" />
+        <div className="product-detail__count-review">
+          <img style={{ marginRight: "8px" }} src={product.rating} alt="" />
           <p>({product.reviewCount} customer review)</p>
         </div>
         <p className="product-detail__description">{product.fullDescription}</p>
-        <div style={{ display: "flex" }}>
-          <div className="category-products-card__card-info">
+        <div style={{ display: "flex", marginTop: "40px" }}>
+          <div className="product-detail__card-info">
             <div style={{ paddingRight: "32px" }}>
-              <p className="card-info-gap">Fresheness</p>
-              <p className="card-info-gap">Farm</p>
-              <p className="card-info-gap">Delivery area</p>
-              <p className="card-info-gap">Stock</p>
+              <p>Fresheness</p>
+              <p>Farm</p>
+              <p>Delivery area</p>
+              <p>Stock</p>
             </div>
-            <div style={{ paddingRight: "32px" }}>
-              <p className="card-info-gap add-green">{product.fresheness}</p>
-              <p className="card-info-gap">{product.farm}</p>
-              <p className="card-info-gap">{product.deliveryArea}</p>
-              <p className="card-info-gap add-green">{product.stock}</p>
+            <div style={{ paddingRight: "68px" }}>
+              <p>{product.fresheness}</p>
+              <p>{product.farm}</p>
+              <p>{product.deliveryArea}</p>
+              <p>{product.stock}</p>
             </div>
           </div>
-          <div className="category-products-card__card-info">
+          <div className="product-detail__card-info">
             <div style={{ paddingRight: "32px" }}>
-              <p className="card-info-gap">SKU:</p>
-              <p className="card-info-gap">Category:</p>
-              <p className="card-info-gap">Buy by:</p>
-              <p className="card-info-gap">Delivery:</p>
+              <p>SKU:</p>
+              <p>Category:</p>
+              <p>Buy by:</p>
+              <p>Delivery:</p>
             </div>
-            <div style={{ paddingRight: "32px" }}>
-              <p className="card-info-gap">{product.sku}</p>
-              <p className="card-info-gap add-green">{product.category}</p>
-              <p className="card-info-gap">{product.buyBy.join(", ")}</p>
-              <p className="card-info-gap add-green">
-                In {product.delivery} days
-              </p>
+            <div>
+              <p>{product.sku}</p>
+              <p>{product.category}</p>
+              <p>{product.buyBy.join(", ")}</p>
+              <p>In {product.delivery} days</p>
             </div>
           </div>
         </div>
-        <div style={{ display: "flex" }}>
-          <p className="product-detail__discount-price">36.23 USD</p>
-          <p className="product-detail__price">48.56 USD</p>
+        <div className="product-detail__purchase-container">
+          <div>
+            <p className="product-detail__discount-price">
+              {product.discountPrice}
+            </p>
+            <p className="product-detail__price">{product.price}</p>
+          </div>
           <form className="product-detail__form">
             <input
               className="product-detail__input"
@@ -74,43 +83,64 @@ const ProductDetail = ({currentProduct, reviewContent, questionContent}) => {
             </select>
           </form>
           <div className="product-detail__add-cart-button">
-            <img src={Add} alt="" />
+            <img style={{ marginRight: "6px" }} src={Add} alt="" />
             Add to cart
           </div>
         </div>
         <div style={{ display: "flex" }}>
           <div className="product-detail__add-wish-button">
-            <img src={Like} alt="" />
+            <img style={{ marginRight: "6px" }} src={Like} alt="" />
             Add to my wish list
           </div>
           <div className="product-detail__compare-button">
-            <img src={Compare} alt="" />
+            <img style={{ marginRight: "6px" }} src={Compare} alt="" />
             Compare
           </div>
         </div>
         <div className="product-detail__addittionally">
           <div className="product-detail__addittionally-buttons">
-            <div 
-            className="product-detail__addittionally-button-description"
-            onClick={() => setCurrentInformation(currentProduct)}>
+            <div
+              className={
+                activeButton === "Description"
+                  ? "product-detail__addittionally-button underlined-button"
+                  : "product-detail__addittionally-button"
+              }
+              onClick={() => handleButtonClick(currentProduct, "Description")}
+            >
               Description
-              </div>
-            <div 
-            className="product-detail__addittionally-button-reviews"
-            onClick={() => setCurrentInformation(reviewContent)}>
+            </div>
+            <div
+              className={
+                activeButton === "Reviews"
+                  ? "product-detail__addittionally-button underlined-button"
+                  : "product-detail__addittionally-button"
+              }
+              onClick={() => handleButtonClick(reviewContent, "Reviews")}
+            >
               Reviews
             </div>
-            <div 
-            className="product-detail__addittionally-button-questions"
-            onClick={() => setCurrentInformation(questionContent)}>
+            <div
+              className={
+                activeButton === "Questions"
+                  ? "product-detail__addittionally-button underlined-button"
+                  : "product-detail__addittionally-button"
+              }
+              onClick={() => handleButtonClick(questionContent, "Questions")}
+            >
               Questions
             </div>
           </div>
-          
-          {currentInformation === currentProduct && <AdditionalDescription currentInformation={currentInformation}/>}
-          {currentInformation === reviewContent && <AdditionalReview currentInformation={currentInformation}/>}
-          {currentInformation === questionContent && <AdditionalQuestion currentInformation={currentInformation}/>}
-          
+          <div style={{ marginTop: "48px" }}>
+          {currentInformation === currentProduct && (
+            <AdditionalDescription currentInformation={currentInformation} />
+          )}
+          {currentInformation === reviewContent && (
+            <AdditionalReview currentInformation={currentInformation} />
+          )}
+          {currentInformation === questionContent && (
+            <AdditionalQuestion currentInformation={currentInformation} />
+          )}
+          </div>
         </div>
       </div>
     </div>
