@@ -12,7 +12,7 @@ const HeaderSearch = ({categories, basketCounter}) => {
             <select name="category" className='headersearch__select'>
             <option className='headersearch__option' defaultValue >All categories</option>
                 {
-                  categories.map((c) => <option className='headersearch__option' value={c.name} key={c.name}>{c.name}</option>) 
+                  categories.map((c) => <option className='headersearch__option' value={c.category} key={c.category}>{c.category}</option>) 
                 }
             </select>
             <input className='headersearch__input' type="text" name="search" placeholder="Search Products, categories ..." />

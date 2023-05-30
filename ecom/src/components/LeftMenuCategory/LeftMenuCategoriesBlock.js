@@ -1,13 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const LeftMenuCategoriesBlock = ({subcategories}) => {
+const LeftMenuCategoriesBlock = ({countOfCategories, handleSpecificCategory, filter}) => {
+  const [activeButton, setActiveButton] = useState("All");
+  
+  const handleButtonClick = (name) => {
+    setActiveButton(name);
+  };
+  
   return (
     <div>
       <h4 className='left-menu__header'>Categories</h4>
-      {subcategories.map((s) => 
-      <div className='left-menu__categories'  key={s.name}>
-        <p className='left-menu__categories-name'>{s.name}</p>
-        <p className="left-menu__categories-count">{s.count}</p>
+      { Object.keys(countOfCategories).map((key) => 
+      <div className='left-menu__categories' id="categories" key={key}>
+        <p 
+        className={
+          activeButton === key
+            ? "left-menu__categories-name active-button"
+            : "left-menu__categories-name"
+        }
+        onClick={(e) => {
+          handleButtonClick(key);
+          // handleSpecificCategory(e);
+          filter(e);
+        }}
+        >{key}</p>
+        <p 
+        className="left-menu__categories-count"
+        >{countOfCategories[key]}</p>
       </div>
       )}
     </div>

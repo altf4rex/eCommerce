@@ -9,7 +9,7 @@ const LeftMenuHome = ({categories, content}) => {
         <ul className='left-menu-home__categories'>
           {
          category.map((c) =>
-            <li className='left-menu-home__category' href="#" key={c.name}><a className='left-menu-home__link' href="№">{c.name}</a></li>
+            <li className='left-menu-home__category' href="#" key={c.category}><a className='left-menu-home__link' href="№">{c.category}</a></li>
          )
         }
         </ul>

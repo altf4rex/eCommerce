@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom';
 import  {useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 const PageNavigation = ({filteredCategory}) => {
+
+  // const [link, setLink] = useState(filteredCategory)  
+
+  
+
   // const navigation = [{name: "Bakery", content: "dgfsdg"}];
   // console.log(filteredCategory);
 
@@ -36,7 +41,7 @@ const PageNavigation = ({filteredCategory}) => {
        <Link to="/" className='page-navigation__link'>Homepage / </Link> 
        {
         filteredCategory.map((c) => 
-          <Link to={c.link}className='page-navigation__link active' key={c.name}>{c.name}</Link>
+          <Link to="/category" className='page-navigation__link active' key={c.name}>{c.name}</Link>
         )
        }
     </div>

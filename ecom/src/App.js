@@ -7,17 +7,9 @@ import { Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer/Footer.js";
 import { useState, useEffect } from "react";
 import ProductDetail from "./components/ProductDetail/ProductDetail.js";
-import RaitingFive from "./assets/rating-4-black.svg";
-const categories = [
-  { name: "Bakery", content: "dgfsdg" },
-  { name: "Fruit and vegetables" },
-  { name: "Meat and fish" },
-  { name: "Drinks" },
-  { name: "Kitchen" },
-  { name: "Special nutrition" },
-  { name: "Baby" },
-  { name: "Pharmacy" },
-];
+
+import categories from './content/data.js';
+
 
 const categoriesContent = {
   header: "Category menu",
@@ -25,23 +17,23 @@ const categoriesContent = {
 };
 
 const products = [
-  { name: "Kitchen" },
-  { name: "Meat and fish" },
-  { name: "Special nutrition" },
-  { name: "Pharmacy" },
-  { name: "Baby" },
-  { name: "Fruit and vegetables" },
-  { name: "Drinks" },
-  { name: "Me" },
+  { category: "Kitchen" },
+  { category: "Meat and fish" },
+  { category: "Special nutrition" },
+  { category: "Pharmacy" },
+  { category: "Baby" },
+  { category: "Fruit and vegetables" },
+  { category: "Drinks" },
+  { category: "Me" },
 ];
 
 const farmerProducts = [
-  { name: "Carrots" },
-  { name: "Tomatoes" },
-  { name: "Potatoes" },
-  { name: "Chicken" },
-  { name: "Pork" },
-  { name: "Fruit and vegetables" },
+  { category: "Carrots" },
+  { category: "Tomatoes" },
+  { category: "Potatoes" },
+  { category: "Chicken" },
+  { category: "Pork" },
+  { category: "Fruit and vegetables" },
 ];
 
 const productsContent = {
@@ -108,835 +100,6 @@ const reviewContent = [
   },
 ];
 
-const productsCardList = [
-  {
-    name: "Mango",
-    description: "Space for a small product description",
-    rating: RaitingFive,
-    reviewCount: "1",
-    fullDescription:
-      "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-    discountPrice: "36.99USD",
-    price: "48.56USD",
-    src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
-    fresheness: "New (Extra fresh)",
-    farm: "Grocery Tarm Fields",
-    deliveryArea: "Europe",
-    stock: "320 pcs",
-    sku: "76645",
-    category: "fruit",
-    buyBy: ["pcs", "kgs", "box", "pack"],
-    delivery: "2",
-    origins:
-      "We work hard to ensure that the fruit and vegetables we sell are fresh and high in quality. If we don’t grow them ourselves, we source them from carefully chosen suppliers, preferring to buy locally whenever possible.",
-    recipe:
-      "From roasts, salads and soups to casseroles and cakes, Carrots will lend sweetness, texture and colour to an enormous number of recipes.",
-      vitamins: [
-      {
-        name: "Vitamin A equiv",
-        quantity:  "735 μg",
-        dv: "104 %"
-      },
-      {
-        name: "Thiamine (B1)",
-        quantity:  "0.066 mg",
-        dv: "6 %"
-      },
-      {
-        name: "Niacin (B3)",
-        quantity:  "0.983 mg",
-        dv: "7 %"
-      },
-      {
-        name: "Folate (Bg)",
-        quantity:  "19 μg",
-        dv: "5 %"
-      }, 
-      {
-        name: "Vitamin C",
-        quantity:  "5.9 mg",
-        dv: "7 %"
-      },
-      {
-        name: "Vitamin E",
-        quantity:  "0.66 mg",
-        dv: "4 %"
-      },
-      {
-        name: "Vitamin K",
-        quantity:  "13.2",
-        dv: "13 %"
-      }
-    ]
-  },
-  {
-    name: "Mango1",
-    description: "Space for a small product description",
-    rating: RaitingFive,
-    reviewCount: "1",
-    fullDescription:
-      "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-    discountPrice: "36.99USD",
-    price: "48.56USD",
-    src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
-    fresheness: "New (Extra fresh)",
-    farm: "Grocery Tarm Fields",
-    deliveryArea: "Europe",
-    stock: "320 pcs",
-    sku: "76645",
-    category: "fruit",
-    buyBy: ["pcs", "kgs", "box", "pack"],
-    delivery: "2",
-    origins:
-      "We work hard to ensure that the fruit and vegetables we sell are fresh and high in quality. If we don’t grow them ourselves, we source them from carefully chosen suppliers, preferring to buy locally whenever possible.",
-    recipe:
-      "From roasts, salads and soups to casseroles and cakes, Carrots will lend sweetness, texture and colour to an enormous number of recipes.",
-    vitamins: [
-      {
-        name: "Vitamin A equiv",
-        quantity:  "735 μg",
-        dv: "104 %"
-      },
-      {
-        name: "Thiamine (B1)",
-        quantity:  "0.066 mg",
-        dv: "6 %"
-      },
-      {
-        name: "Niacin (B3)",
-        quantity:  "0.983 mg",
-        dv: "7 %"
-      },
-      {
-        name: "Folate (Bg)",
-        quantity:  "19 μg",
-        dv: "5 %"
-      }
-    ]
-  },
-  {
-    name: "Mango2",
-    description: "Space for a small product description",
-    rating: RaitingFive,
-    reviewCount: "1",
-    fullDescription:
-      "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-    discountPrice: "36.99USD",
-    price: "48.56USD",
-    src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
-    fresheness: "New (Extra fresh)",
-    farm: "Grocery Tarm Fields",
-    deliveryArea: "Europe",
-    stock: "320 pcs",
-    sku: "76645",
-    category: "fruit",
-    buyBy: ["pcs", "kgs", "box", "pack"],
-    delivery: "2",
-    origins:
-      "We work hard to ensure that the fruit and vegetables we sell are fresh and high in quality. If we don’t grow them ourselves, we source them from carefully chosen suppliers, preferring to buy locally whenever possible.",
-    recipe:
-      "From roasts, salads and soups to casseroles and cakes, Carrots will lend sweetness, texture and colour to an enormous number of recipes.",
-    vitamins: [
-      {
-        name: "Vitamin A equiv",
-        quantity:  "735 μg",
-        dv: "104 %"
-      },
-      {
-        name: "Thiamine (B1)",
-        quantity:  "0.066 mg",
-        dv: "6 %"
-      },
-      {
-        name: "Niacin (B3)",
-        quantity:  "0.983 mg",
-        dv: "7 %"
-      },
-      {
-        name: "Folate (Bg)",
-        quantity:  "19 μg",
-        dv: "5 %"
-      }
-    ]
-    
-    
-  },
-  {
-    name: "Mango3",
-    description: "Space for a small product description",
-    rating: RaitingFive,
-    reviewCount: "1",
-    fullDescription:
-      "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-    discountPrice: "36.99USD",
-    price: "48.56USD",
-    src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
-    fresheness: "New (Extra fresh)",
-    farm: "Grocery Tarm Fields",
-    deliveryArea: "Europe",
-    stock: "320 pcs",
-    sku: "76645",
-    category: "fruit",
-    buyBy: ["pcs", "kgs", "box", "pack"],
-    delivery: "2",
-    origins:
-      "We work hard to ensure that the fruit and vegetables we sell are fresh and high in quality. If we don’t grow them ourselves, we source them from carefully chosen suppliers, preferring to buy locally whenever possible.",
-    recipe:
-      "From roasts, salads and soups to casseroles and cakes, Carrots will lend sweetness, texture and colour to an enormous number of recipes.",
-    vitamins: [
-      {
-        name: "Vitamin A equiv",
-        quantity:  "735 μg",
-        dv: "104 %"
-      },
-      {
-        name: "Thiamine (B1)",
-        quantity:  "0.066 mg",
-        dv: "6 %"
-      },
-      {
-        name: "Niacin (B3)",
-        quantity:  "0.983 mg",
-        dv: "7 %"
-      },
-      {
-        name: "Folate (Bg)",
-        quantity:  "19 μg",
-        dv: "5 %"
-      }
-    ]
-  },
-  {
-    name: "Mango4",
-    description: "Space for a small product description",
-    rating: RaitingFive,
-    reviewCount: "1",
-    fullDescription:
-      "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-    discountPrice: "36.99USD",
-    price: "48.56USD",
-    src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
-    fresheness: "New (Extra fresh)",
-    farm: "Grocery Tarm Fields",
-    deliveryArea: "Europe",
-    stock: "320 pcs",
-    sku: "76645",
-    category: "fruit",
-    buyBy: ["pcs", "kgs", "box", "pack"],
-    delivery: "2",
-    origins:
-      "We work hard to ensure that the fruit and vegetables we sell are fresh and high in quality. If we don’t grow them ourselves, we source them from carefully chosen suppliers, preferring to buy locally whenever possible.",
-    recipe:
-      "From roasts, salads and soups to casseroles and cakes, Carrots will lend sweetness, texture and colour to an enormous number of recipes.",
-    vitamins: [
-      {
-        name: "Vitamin A equiv",
-        quantity:  "735 μg",
-        dv: "104 %"
-      },
-      {
-        name: "Thiamine (B1)",
-        quantity:  "0.066 mg",
-        dv: "6 %"
-      },
-      {
-        name: "Niacin (B3)",
-        quantity:  "0.983 mg",
-        dv: "7 %"
-      },
-      {
-        name: "Folate (Bg)",
-        quantity:  "19 μg",
-        dv: "5 %"
-      }
-    ]
-  },
-  {
-    name: "Mango5",
-    description: "Space for a small product description",
-    rating: RaitingFive,
-    reviewCount: "1",
-    fullDescription:
-      "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-    discountPrice: "36.99USD",
-    price: "48.56USD",
-    src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
-    fresheness: "New (Extra fresh)",
-    farm: "Grocery Tarm Fields",
-    deliveryArea: "Europe",
-    stock: "320 pcs",
-    sku: "76645",
-    category: "fruit",
-    buyBy: ["pcs", "kgs", "box", "pack"],
-    delivery: "2",
-    origins:
-      "We work hard to ensure that the fruit and vegetables we sell are fresh and high in quality. If we don’t grow them ourselves, we source them from carefully chosen suppliers, preferring to buy locally whenever possible.",
-    recipe:
-      "From roasts, salads and soups to casseroles and cakes, Carrots will lend sweetness, texture and colour to an enormous number of recipes.",
-    vitamins: [
-      {
-        name: "Vitamin A equiv",
-        quantity:  "735 μg",
-        dv: "104 %"
-      },
-      {
-        name: "Thiamine (B1)",
-        quantity:  "0.066 mg",
-        dv: "6 %"
-      },
-      {
-        name: "Niacin (B3)",
-        quantity:  "0.983 mg",
-        dv: "7 %"
-      },
-      {
-        name: "Folate (Bg)",
-        quantity:  "19 μg",
-        dv: "5 %"
-      }
-    ]
-  },
-  {
-    name: "Mango6",
-    description: "Space for a small product description",
-    rating: RaitingFive,
-    reviewCount: "1",
-    fullDescription:
-      "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-    discountPrice: "36.99USD",
-    price: "48.56USD",
-    src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
-    fresheness: "New (Extra fresh)",
-    farm: "Grocery Tarm Fields",
-    deliveryArea: "Europe",
-    stock: "320 pcs",
-    sku: "76645",
-    category: "fruit",
-    buyBy: ["pcs", "kgs", "box", "pack"],
-    delivery: "2",
-    origins:
-      "We work hard to ensure that the fruit and vegetables we sell are fresh and high in quality. If we don’t grow them ourselves, we source them from carefully chosen suppliers, preferring to buy locally whenever possible.",
-    recipe:
-      "From roasts, salads and soups to casseroles and cakes, Carrots will lend sweetness, texture and colour to an enormous number of recipes.",
-    vitamins: [
-      {
-        name: "Vitamin A equiv",
-        quantity:  "735 μg",
-        dv: "104 %"
-      },
-      {
-        name: "Thiamine (B1)",
-        quantity:  "0.066 mg",
-        dv: "6 %"
-      },
-      {
-        name: "Niacin (B3)",
-        quantity:  "0.983 mg",
-        dv: "7 %"
-      },
-      {
-        name: "Folate (Bg)",
-        quantity:  "19 μg",
-        dv: "5 %"
-      }
-    ]
-  },
-  {
-    name: "Mango7",
-    description: "Space for a small product description",
-    rating: RaitingFive,
-    reviewCount: "1",
-    fullDescription:
-      "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-    discountPrice: "36.99USD",
-    price: "48.56USD",
-    src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
-    fresheness: "New (Extra fresh)",
-    farm: "Grocery Tarm Fields",
-    deliveryArea: "Europe",
-    stock: "320 pcs",
-    sku: "76645",
-    category: "fruit",
-    buyBy: ["pcs", "kgs", "box", "pack"],
-    delivery: "2",
-    origins:
-      "We work hard to ensure that the fruit and vegetables we sell are fresh and high in quality. If we don’t grow them ourselves, we source them from carefully chosen suppliers, preferring to buy locally whenever possible.",
-    recipe:
-      "From roasts, salads and soups to casseroles and cakes, Carrots will lend sweetness, texture and colour to an enormous number of recipes.",
-    vitamins: [
-      {
-        name: "Vitamin A equiv",
-        quantity:  "735 μg",
-        dv: "104 %"
-      },
-      {
-        name: "Thiamine (B1)",
-        quantity:  "0.066 mg",
-        dv: "6 %"
-      },
-      {
-        name: "Niacin (B3)",
-        quantity:  "0.983 mg",
-        dv: "7 %"
-      },
-      {
-        name: "Folate (Bg)",
-        quantity:  "19 μg",
-        dv: "5 %"
-      }
-    ]
-  },
-  {
-    name: "Mango8",
-    description: "Space for a small product description",
-    rating: RaitingFive,
-    reviewCount: "1",
-    fullDescription:
-      "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-    discountPrice: "36.99USD",
-    price: "48.56USD",
-    src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
-    fresheness: "New (Extra fresh)",
-    farm: "Grocery Tarm Fields",
-    deliveryArea: "Europe",
-    stock: "320 pcs",
-    sku: "76645",
-    category: "fruit",
-    buyBy: ["pcs", "kgs", "box", "pack"],
-    delivery: "2",
-    origins:
-      "We work hard to ensure that the fruit and vegetables we sell are fresh and high in quality. If we don’t grow them ourselves, we source them from carefully chosen suppliers, preferring to buy locally whenever possible.",
-    recipe:
-      "From roasts, salads and soups to casseroles and cakes, Carrots will lend sweetness, texture and colour to an enormous number of recipes.",
-    vitamins: [
-      {
-        name: "Vitamin A equiv",
-        quantity:  "735 μg",
-        dv: "104 %"
-      },
-      {
-        name: "Thiamine (B1)",
-        quantity:  "0.066 mg",
-        dv: "6 %"
-      },
-      {
-        name: "Niacin (B3)",
-        quantity:  "0.983 mg",
-        dv: "7 %"
-      },
-      {
-        name: "Folate (Bg)",
-        quantity:  "19 μg",
-        dv: "5 %"
-      }
-    ]
-  },
-  {
-    name: "Mango9",
-    description: "Space for a small product description",
-    rating: RaitingFive,
-    reviewCount: "1",
-    fullDescription:
-      "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-    discountPrice: "36.99USD",
-    price: "48.56USD",
-    src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
-    fresheness: "New (Extra fresh)",
-    farm: "Grocery Tarm Fields",
-    deliveryArea: "Europe",
-    stock: "320 pcs",
-    sku: "76645",
-    category: "fruit",
-    buyBy: ["pcs", "kgs", "box", "pack"],
-    delivery: "2",
-    origins:
-      "We work hard to ensure that the fruit and vegetables we sell are fresh and high in quality. If we don’t grow them ourselves, we source them from carefully chosen suppliers, preferring to buy locally whenever possible.",
-    recipe:
-      "From roasts, salads and soups to casseroles and cakes, Carrots will lend sweetness, texture and colour to an enormous number of recipes.",
-    vitamins: [
-      {
-        name: "Vitamin A equiv",
-        quantity:  "735 μg",
-        dv: "104 %"
-      },
-      {
-        name: "Thiamine (B1)",
-        quantity:  "0.066 mg",
-        dv: "6 %"
-      },
-      {
-        name: "Niacin (B3)",
-        quantity:  "0.983 mg",
-        dv: "7 %"
-      },
-      {
-        name: "Folate (Bg)",
-        quantity:  "19 μg",
-        dv: "5 %"
-      }
-    ]
-  },
-  {
-    name: "Mango10",
-    description: "Space for a small product description",
-    rating: RaitingFive,
-    reviewCount: "1",
-    fullDescription:
-      "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-    discountPrice: "36.99USD",
-    price: "48.56USD",
-    src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
-    fresheness: "New (Extra fresh)",
-    farm: "Grocery Tarm Fields",
-    deliveryArea: "Europe",
-    stock: "320 pcs",
-    sku: "76645",
-    category: "fruit",
-    buyBy: ["pcs", "kgs", "box", "pack"],
-    delivery: "2",
-    origins:
-      "We work hard to ensure that the fruit and vegetables we sell are fresh and high in quality. If we don’t grow them ourselves, we source them from carefully chosen suppliers, preferring to buy locally whenever possible.",
-    recipe:
-      "From roasts, salads and soups to casseroles and cakes, Carrots will lend sweetness, texture and colour to an enormous number of recipes.",
-    vitamins: [
-      {
-        name: "Vitamin A equiv",
-        quantity:  "735 μg",
-        dv: "104 %"
-      },
-      {
-        name: "Thiamine (B1)",
-        quantity:  "0.066 mg",
-        dv: "6 %"
-      },
-      {
-        name: "Niacin (B3)",
-        quantity:  "0.983 mg",
-        dv: "7 %"
-      },
-      {
-        name: "Folate (Bg)",
-        quantity:  "19 μg",
-        dv: "5 %"
-      }
-    ]
-  },
-  {
-    name: "Mango11",
-    description: "Space for a small product description",
-    rating: RaitingFive,
-    reviewCount: "1",
-    fullDescription:
-      "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-    discountPrice: "36.99USD",
-    price: "48.56USD",
-    src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
-    fresheness: "New (Extra fresh)",
-    farm: "Grocery Tarm Fields",
-    deliveryArea: "Europe",
-    stock: "320 pcs",
-    sku: "76645",
-    category: "fruit",
-    buyBy: ["pcs", "kgs", "box", "pack"],
-    delivery: "2",
-    origins:
-      "We work hard to ensure that the fruit and vegetables we sell are fresh and high in quality. If we don’t grow them ourselves, we source them from carefully chosen suppliers, preferring to buy locally whenever possible.",
-    recipe:
-      "From roasts, salads and soups to casseroles and cakes, Carrots will lend sweetness, texture and colour to an enormous number of recipes.",
-    vitamins: [
-      {
-        name: "Vitamin A equiv",
-        quantity:  "735 μg",
-        dv: "104 %"
-      },
-      {
-        name: "Thiamine (B1)",
-        quantity:  "0.066 mg",
-        dv: "6 %"
-      },
-      {
-        name: "Niacin (B3)",
-        quantity:  "0.983 mg",
-        dv: "7 %"
-      },
-      {
-        name: "Folate (Bg)",
-        quantity:  "19 μg",
-        dv: "5 %"
-      }
-    ]
-  },
-  {
-    name: "Mango12",
-    description: "Space for a small product description",
-    rating: RaitingFive,
-    reviewCount: "1",
-    fullDescription:
-      "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-    discountPrice: "36.99USD",
-    price: "48.56USD",
-    src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
-    fresheness: "New (Extra fresh)",
-    farm: "Grocery Tarm Fields",
-    deliveryArea: "Europe",
-    stock: "320 pcs",
-    sku: "76645",
-    category: "fruit",
-    buyBy: ["pcs", "kgs", "box", "pack"],
-    delivery: "2",
-    origins:
-      "We work hard to ensure that the fruit and vegetables we sell are fresh and high in quality. If we don’t grow them ourselves, we source them from carefully chosen suppliers, preferring to buy locally whenever possible.",
-    recipe:
-      "From roasts, salads and soups to casseroles and cakes, Carrots will lend sweetness, texture and colour to an enormous number of recipes.",
-    vitamins: [
-      {
-        name: "Vitamin A equiv",
-        quantity:  "735 μg",
-        dv: "104 %"
-      },
-      {
-        name: "Thiamine (B1)",
-        quantity:  "0.066 mg",
-        dv: "6 %"
-      },
-      {
-        name: "Niacin (B3)",
-        quantity:  "0.983 mg",
-        dv: "7 %"
-      },
-      {
-        name: "Folate (Bg)",
-        quantity:  "19 μg",
-        dv: "5 %"
-      }
-    ]
-  },
-  {
-    name: "Mango13",
-    description: "Space for a small product description",
-    rating: RaitingFive,
-    reviewCount: "1",
-    fullDescription:
-      "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-    discountPrice: "36.99USD",
-    price: "48.56USD",
-    src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
-    fresheness: "New (Extra fresh)",
-    farm: "Grocery Tarm Fields",
-    deliveryArea: "Europe",
-    stock: "320 pcs",
-    sku: "76645",
-    category: "fruit",
-    buyBy: ["pcs", "kgs", "box", "pack"],
-    delivery: "2",
-    origins:
-      "We work hard to ensure that the fruit and vegetables we sell are fresh and high in quality. If we don’t grow them ourselves, we source them from carefully chosen suppliers, preferring to buy locally whenever possible.",
-    recipe:
-      "From roasts, salads and soups to casseroles and cakes, Carrots will lend sweetness, texture and colour to an enormous number of recipes.",
-    vitamins: [
-      {
-        name: "Vitamin A equiv",
-        quantity:  "735 μg",
-        dv: "104 %"
-      },
-      {
-        name: "Thiamine (B1)",
-        quantity:  "0.066 mg",
-        dv: "6 %"
-      },
-      {
-        name: "Niacin (B3)",
-        quantity:  "0.983 mg",
-        dv: "7 %"
-      },
-      {
-        name: "Folate (Bg)",
-        quantity:  "19 μg",
-        dv: "5 %"
-      }
-    ]
-  },
-  {
-    name: "Mango14",
-    description: "Space for a small product description",
-    rating: RaitingFive,
-    reviewCount: "1",
-    fullDescription:
-      "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-    discountPrice: "36.99USD",
-    price: "48.56USD",
-    src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
-    fresheness: "New (Extra fresh)",
-    farm: "Grocery Tarm Fields",
-    deliveryArea: "Europe",
-    stock: "320 pcs",
-    sku: "76645",
-    category: "fruit",
-    buyBy: ["pcs", "kgs", "box", "pack"],
-    delivery: "2",
-    origins:
-      "We work hard to ensure that the fruit and vegetables we sell are fresh and high in quality. If we don’t grow them ourselves, we source them from carefully chosen suppliers, preferring to buy locally whenever possible.",
-    recipe:
-      "From roasts, salads and soups to casseroles and cakes, Carrots will lend sweetness, texture and colour to an enormous number of recipes.",
-    vitamins: [
-      {
-        name: "Vitamin A equiv",
-        quantity:  "735 μg",
-        dv: "104 %"
-      },
-      {
-        name: "Thiamine (B1)",
-        quantity:  "0.066 mg",
-        dv: "6 %"
-      },
-      {
-        name: "Niacin (B3)",
-        quantity:  "0.983 mg",
-        dv: "7 %"
-      },
-      {
-        name: "Folate (Bg)",
-        quantity:  "19 μg",
-        dv: "5 %"
-      }
-    ]
-  },
-  {
-    name: "Mango15",
-    description: "Space for a small product description",
-    rating: RaitingFive,
-    reviewCount: "1",
-    fullDescription:
-      "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-    discountPrice: "36.99USD",
-    price: "48.56USD",
-    src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
-    fresheness: "New (Extra fresh)",
-    farm: "Grocery Tarm Fields",
-    deliveryArea: "Europe",
-    stock: "320 pcs",
-    sku: "76645",
-    category: "fruit",
-    buyBy: ["pcs", "kgs", "box", "pack"],
-    delivery: "2",
-    origins:
-      "We work hard to ensure that the fruit and vegetables we sell are fresh and high in quality. If we don’t grow them ourselves, we source them from carefully chosen suppliers, preferring to buy locally whenever possible.",
-    recipe:
-      "From roasts, salads and soups to casseroles and cakes, Carrots will lend sweetness, texture and colour to an enormous number of recipes.",
-    vitamins: [
-      {
-        name: "Vitamin A equiv",
-        quantity:  "735 μg",
-        dv: "104 %"
-      },
-      {
-        name: "Thiamine (B1)",
-        quantity:  "0.066 mg",
-        dv: "6 %"
-      },
-      {
-        name: "Niacin (B3)",
-        quantity:  "0.983 mg",
-        dv: "7 %"
-      },
-      {
-        name: "Folate (Bg)",
-        quantity:  "19 μg",
-        dv: "5 %"
-      }
-    ]
-  },
-  {
-    name: "Mango16",
-    description: "Space for a small product description",
-    rating: RaitingFive,
-    reviewCount: "1",
-    fullDescription:
-      "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-    discountPrice: "36.99USD",
-    price: "48.56USD",
-    src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
-    fresheness: "New (Extra fresh)",
-    farm: "Grocery Tarm Fields",
-    deliveryArea: "Europe",
-    stock: "320 pcs",
-    sku: "76645",
-    category: "fruit",
-    buyBy: ["pcs", "kgs", "box", "pack"],
-    delivery: "2",
-    origins:
-      "We work hard to ensure that the fruit and vegetables we sell are fresh and high in quality. If we don’t grow them ourselves, we source them from carefully chosen suppliers, preferring to buy locally whenever possible.",
-    recipe:
-      "From roasts, salads and soups to casseroles and cakes, Carrots will lend sweetness, texture and colour to an enormous number of recipes.",
-    vitamins: [
-      {
-        name: "Vitamin A equiv",
-        quantity:  "735 μg",
-        dv: "104 %"
-      },
-      {
-        name: "Thiamine (B1)",
-        quantity:  "0.066 mg",
-        dv: "6 %"
-      },
-      {
-        name: "Niacin (B3)",
-        quantity:  "0.983 mg",
-        dv: "7 %"
-      },
-      {
-        name: "Folate (Bg)",
-        quantity:  "19 μg",
-        dv: "5 %"
-      }
-    ]
-  },
-  {
-    name: "Mango17",
-    description: "Space for a small product description",
-    rating: RaitingFive,
-    reviewCount: "1",
-    fullDescription:
-      "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-    discountPrice: "36.99USD",
-    price: "48.56USD",
-    src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
-    fresheness: "New (Extra fresh)",
-    farm: "Grocery Tarm Fields",
-    deliveryArea: "Europe",
-    stock: "320 pcs",
-    sku: "76645",
-    category: "fruit",
-    buyBy: ["pcs", "kgs", "box", "pack"],
-    delivery: "2",
-    origins:
-      "We work hard to ensure that the fruit and vegetables we sell are fresh and high in quality. If we don’t grow them ourselves, we source them from carefully chosen suppliers, preferring to buy locally whenever possible.",
-    recipe:
-      "From roasts, salads and soups to casseroles and cakes, Carrots will lend sweetness, texture and colour to an enormous number of recipes.",
-    vitamins: [
-      {
-        name: "Vitamin A equiv",
-        quantity:  "735 μg",
-        dv: "104 %"
-      },
-      {
-        name: "Thiamine (B1)",
-        quantity:  "0.066 mg",
-        dv: "6 %"
-      },
-      {
-        name: "Niacin (B3)",
-        quantity:  "0.983 mg",
-        dv: "7 %"
-      },
-      {
-        name: "Folate (Bg)",
-        quantity:  "19 μg",
-        dv: "5 %"
-      }
-    ]
-  },
-];
 
 const questionContent = [
   { question: "What about.... idk?", id: Date.now(), answer: "mmm... idk" },
@@ -970,24 +133,79 @@ function App() {
   //   };
   // }, [filteredCategory]);
 
-  const handleCategory = (e) => {
-    const filtered = categories.filter((c) => c.name === e.target.textContent);
-    setFilteredCategory(filtered);
-    localStorage.setItem("filteredCategory", JSON.stringify(filtered));
-  };
+  function countCategories(products) {
+    const categories = {"All": products.length};
+  
+    // Перебираем каждый объект в массиве продуктов
+    products.forEach(product => {
+      const category = product.category;
+      
+      // Если категория уже существует в объекте categories, увеличиваем ее счетчик на 1
+      if (categories.hasOwnProperty(category)) {
+        categories[category] += 1;
+      } else {
+        // Если категория не существует, добавляем ее в объект categories со счетчиком 1
+        categories[category] = 1;
+      }
+    });
+  
+    // Возвращаем объект categories, содержащий количество уникальных категорий и их количества
+    return categories;
+  }
 
-  const [filteredCategory, setFilteredCategory] = useState(
-    JSON.parse(localStorage.getItem("filteredCategory")) || null
+  const handleCategory = (e) => {
+    const filteredName = categories.filter((c) => c.category === e.target.textContent);
+    setCountOfCategories(countCategories(filteredName[0].array))
+    // const filteredProducts = textContent.filter((p) => p.array === filteredName[0].category);
+    // setFilteredCategory(filteredProducts);
+    setFilteredName(filteredName[0].array);
+    // localStorage.setItem("filteredProducts", JSON.stringify(filteredProducts));
+    localStorage.setItem("filteredName", JSON.stringify(filteredName[0].array));
+  };
+  
+  // const handleSpecificCategory = (e) => {
+  //   const filteredSpecificName = filteredName.filter((a) => a.category === e.target.textContent);
+  //   // const filteredProducts = textContent.filter((p) => p.array === filteredName[0].category);
+  //   // setFilteredCategory(filteredProducts);
+  //   setFilteredSpecificName(filteredSpecificName);
+  //   // localStorage.setItem("filteredProducts", JSON.stringify(filteredProducts));
+  //   localStorage.setItem("filteredSpecificName", JSON.stringify(filteredSpecificName));
+  // };
+
+  // const [filteredCategory, setFilteredCategory] = useState(
+  //   JSON.parse(localStorage.getItem("filteredProducts")) || null
+    
+  // );
+  const [filteredName, setFilteredName] = useState(
+    JSON.parse(localStorage.getItem("filteredName")) || null
+    
   );
+  // const [filteredSpecificName, setFilteredSpecificName] = useState(
+  //   JSON.parse(localStorage.getItem("filteredSpecificName")) || null
+    
+  // );
 
   useEffect(() => {
-    return () => localStorage.removeItem("filteredCategory");
+    return () => localStorage.removeItem("filteredName");
+  }, []);
+
+  const [countOfCategories, setCountOfCategories] = useState(
+    JSON.parse(localStorage.getItem("countOfCategories")) || 0
+    
+  );
+  // const [filteredSpecificName, setFilteredSpecificName] = useState(
+  //   JSON.parse(localStorage.getItem("filteredSpecificName")) || null
+    
+  // );
+
+  useEffect(() => {
+    return () => localStorage.removeItem("countOfCategories");
   }, []);
 
   const [currentProduct, setCurrentProduct] = useState([]);
 
   const handleIdProduct = (e) => {
-    setCurrentProduct(productsCardList.filter((p) => p.name === e.target.id));
+    setCurrentProduct(filteredName.filter((f) => f.name === e.target.id) );
   };
 
   return (
@@ -1014,8 +232,9 @@ function App() {
           path="/category"
           element={
             <Category
-              productsCardList={productsCardList}
-              filteredCategory={filteredCategory}
+              countOfCategories={countOfCategories}
+              productsCardList={filteredName}
+              filteredCategory={filteredName}
               handleIdProduct={handleIdProduct}
             />
           }
@@ -1024,6 +243,7 @@ function App() {
           path="/product"
           element={
             <ProductDetail
+              filteredCategory={filteredName}
               currentProduct={currentProduct}
               reviewContent={reviewContent}
               questionContent={questionContent}

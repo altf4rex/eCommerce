@@ -15,14 +15,14 @@ const CategoryProductsCard = ({currentProducts, handleIdProduct}) => {
                 <img src={p.rating} alt="" />
                 <div className="category-products-card__card-info">
                   <div style={{paddingRight: "32px"}}>
+                    <p className='card-info-gap'>Category</p>
                     <p className='card-info-gap'>Fresheness</p>
-                    <p className='card-info-gap'>Farm</p>
                     <p className='card-info-gap'>Delivery</p>
                     <p className='card-info-gap'>Stock</p>
                   </div>
                   <div style={{paddingRight: "32px"}}>
+                    <p className='card-info-gap '>{p.category}</p>
                     <p className='card-info-gap add-green'>{p.fresheness}</p>
-                    <p className='card-info-gap'>{p.farm}</p>
                     <p className='card-info-gap'>{p.delivery}</p>
                     <p className='card-info-gap add-green '>{p.stock}</p>
                   </div>

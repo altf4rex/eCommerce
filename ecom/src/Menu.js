@@ -13,9 +13,9 @@ const Menu = ({categories, handleCategory}) => {
              onClick={handleCategory}
              
              className='menu__category' 
-             value={c.name}
-             key={c.name}>
-             {c.name}
+             value={c.category}
+             key={c.category}>
+             {c.category}
              <img 
              style={{marginBottom: "2px", marginLeft: "2px"} } 
              src={Arrow} alt="" />

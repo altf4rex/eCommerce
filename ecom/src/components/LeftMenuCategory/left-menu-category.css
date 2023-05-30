@@ -18,13 +18,15 @@ color: #151515;
     margin-top: 12px;
     display: flex;
     justify-content: space-between;
-    cursor: pointer;
+    
 }
 
 
 
 .left-menu__categories-name,
 .left-menu__brands-name{
+    padding: 3px 6px;
+    border-radius: 12px;
     font-family: 'Open Sans';
 font-style: normal;
 font-weight: 400;
@@ -33,12 +35,16 @@ line-height: 19px;
 color: #151515;
 }
 
+.left-menu__categories-name{
+    cursor: pointer;
+}
+
 .left-menu__categories-name:hover{
     color: #5f5f5f;
 }
 
 .left-menu__categories-count{
-    padding: 0px 8px;
+    padding: 4px 8px 0px 8px;
     font-family: 'Poppins';
 font-style: normal;
 font-weight: 600;
@@ -104,4 +110,11 @@ cursor: pointer;
 
 .left-menu-buttons__reset:hover{
     background: #ece6e6;
+}
+
+.active-button{
+    
+    background-color: #A9A9A9;
+    
+    
 }

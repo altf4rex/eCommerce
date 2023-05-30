@@ -5,7 +5,7 @@ const LeftMenuCategoryRating = ({handleToggleRating, ratingStarts}) => {
     <div className="left-menu__block">
       <h4 className='left-menu__header'>Rating</h4>
       {ratingStarts.map((r) => (
-        <div className="left-menu__rating" key={r.id}>
+        <div className="left-menu__rating" key={r.id} id="rating">
           <input
             type="checkbox"
             style={{marginTop: "0.7px"}}

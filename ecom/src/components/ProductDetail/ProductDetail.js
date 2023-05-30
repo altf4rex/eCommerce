@@ -6,8 +6,11 @@ import AdditionalDescription from "../AdditionalDescription/AdditionalDescriptio
 import AdditionalReview from "../AdditionalReview/AdditionalReview";
 import AdditionalQuestion from "../AdditionalQuestion/AdditionalQuestion";
 import "./product-detail.css";
-const ProductDetail = ({ currentProduct, reviewContent, questionContent }) => {
+import PageNavigation from "../PageNavigation/PageNavigation";
+
+const ProductDetail = ({ currentProduct, reviewContent, questionContent, filteredCategory }) => {
   const product = currentProduct[0];
+  
   const [currentInformation, setCurrentInformation] = useState(currentProduct);
   const [activeButton, setActiveButton] = useState("Description");
 
@@ -15,8 +18,11 @@ const ProductDetail = ({ currentProduct, reviewContent, questionContent }) => {
     setCurrentInformation(array);
     setActiveButton(name);
   };
-
+const link = [...filteredCategory,...currentProduct]
   return (
+    <>
+    <PageNavigation filteredCategory={link} />
+    
     <div className="product-detail">
       <img
         className="product-detail__img"
@@ -144,6 +150,7 @@ const ProductDetail = ({ currentProduct, reviewContent, questionContent }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
