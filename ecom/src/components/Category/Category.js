@@ -13,7 +13,7 @@ import RatingTwo from '../../assets/rating-2.svg';
 import RatingOne from '../../assets/rating-1.svg';
 
 
-const Category = ({filteredCategory, handleIdProduct, countOfCategories, productsCardList}) => {
+const Category = ({filteredCategory, handleIdProduct, countOfCategories, productsCardList, pageName}) => {
   
  // const [currentPage, setCurrentPage] = useState(1); // текущая страница
   
@@ -68,11 +68,11 @@ function handleToggleRating(ratingId, check) {
 const [filteredCategories, setFilteredCategories] = useState({
   categories: "All",
   rating: {
-    rating1: false,
-    rating2: false,
-    rating3: false,
-    rating4: false,
-    rating5: false,
+    "rating-1": false,
+    "rating-2": false,
+    "rating-3": false,
+    "rating-4": false,
+    "rating-5": false,
   },
 });
 
@@ -101,13 +101,20 @@ const filteredProducts = () => {
       (a) => a.category === filteredCategories.categories
     );
   }
-  
+  let previousSort = [];
+
   for (let ratingId in filteredCategories.rating) {
     if (filteredCategories.rating[ratingId]) {
-      specificFilter = specificFilter.filter((r) => r.ratingId === ratingId);
+      const ratingArray = specificFilter.filter((r) => r.ratingId === ratingId);
+      previousSort.push(...ratingArray);
     }
   }
-
+  
+  if (previousSort.length > 0) {
+    specificFilter = previousSort;
+  } 
+  
+  
   setFilteredSpecificCategory(specificFilter);
   localStorage.setItem("specificFilter", JSON.stringify(specificFilter));
 };
@@ -122,13 +129,15 @@ useEffect(() => {
 
 useEffect(() => {
   filteredProducts();
-}, [filteredCategories]);
+}, [filteredCategories, filteredCategory]);
 
 
 
   return (
     <div>
-      <PageNavigation filteredCategory={filteredCategory} />
+      {/* <PageNavigation 
+      pageName={pageName}
+      filteredCategory={filteredCategory} /> */}
       <CategoryHeader />
       <CategoryFilter /> 
       <div style={{display:'flex', padding: "64px 0"}}>

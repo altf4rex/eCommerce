@@ -153,12 +153,17 @@ function App() {
     return categories;
   }
 
+const [pageName, setPageName] = useState('');
+
+
   const handleCategory = (e) => {
     const filteredName = categories.filter((c) => c.category === e.target.textContent);
     setCountOfCategories(countCategories(filteredName[0].array))
     // const filteredProducts = textContent.filter((p) => p.array === filteredName[0].category);
     // setFilteredCategory(filteredProducts);
+    
     setFilteredName(filteredName[0].array);
+    setPageName(filteredName[0].category);
     // localStorage.setItem("filteredProducts", JSON.stringify(filteredProducts));
     localStorage.setItem("filteredName", JSON.stringify(filteredName[0].array));
   };
@@ -217,6 +222,7 @@ function App() {
           path="/"
           element={
             <HomePage
+            pageName={pageName}
               categories={categories}
               products={products}
               categoriesContent={categoriesContent}
