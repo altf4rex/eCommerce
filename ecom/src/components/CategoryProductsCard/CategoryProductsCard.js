@@ -2,8 +2,10 @@ import React from 'react';
 import './category-product-card.css';
 import ArrowRight from '../../assets/arrow-right-white.svg';
 import Like from '../../assets/like.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 const CategoryProductsCard = ({currentProducts, handleIdProduct}) => {
+  const navigate = useNavigate();
   return (
     <>
         {currentProducts.map((p) => 
@@ -33,14 +35,19 @@ const CategoryProductsCard = ({currentProducts, handleIdProduct}) => {
               <p className="category-products-card__card-price">{p.price}</p>
               <p className="category-products-card__card-shipping">Free Shipping</p>
               <p className="category-products-card__card-shipping-days">Delivery in 1 day</p>
-              <Link 
+              <div
               id={p.name} 
               to='/product' 
               className="category-products-card__card-button-detail"
-              onClick={handleIdProduct}>
+              onClick={() => {
+              
+                navigate(`product/${p.name}`);
+                handleIdProduct(p.name)
+               }}
+              >
                 Product Detail
                 <img src={ArrowRight} alt="" style={{marginLeft: "6px"}}/>
-              </Link>
+              </div>
               <div className="category-products-card__card-button-add">
                 <img src={Like} alt="" style={{marginRight: "8px"}}/>
                 Add to wish list

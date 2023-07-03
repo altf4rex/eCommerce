@@ -18,10 +18,11 @@ const ProductDetail = ({ currentProduct, reviewContent, questionContent, filtere
     setCurrentInformation(array);
     setActiveButton(name);
   };
-const link = [...filteredCategory,...currentProduct]
+  // function to add additional information for the selected item
+  // const { itemId } = useParams();
   return (
     <>
-    <PageNavigation filteredCategory={link} />
+   
     
     <div className="product-detail">
       <img

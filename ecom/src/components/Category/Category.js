@@ -11,6 +11,7 @@ import RatingFour from '../../assets/rating-4.svg';
 import RatingThree from '../../assets/rating-3.svg';
 import RatingTwo from '../../assets/rating-2.svg';
 import RatingOne from '../../assets/rating-1.svg';
+import { useParams } from "react-router-dom";
 
 
 const Category = ({filteredCategory, handleIdProduct, countOfCategories, productsCardList, pageName}) => {
@@ -132,13 +133,14 @@ useEffect(() => {
 }, [filteredCategories, filteredCategory]);
 
 
+const { categoryId, productId  } = useParams();
 
   return (
     <div>
-      {/* <PageNavigation 
-      pageName={pageName}
-      filteredCategory={filteredCategory} /> */}
-      <CategoryHeader />
+      <PageNavigation 
+      productId={productId}
+      categoryId={categoryId} />
+      <CategoryHeader categoryId={categoryId}/>
       <CategoryFilter /> 
       <div style={{display:'flex', padding: "64px 0"}}>
         <LeftMenuCategory 

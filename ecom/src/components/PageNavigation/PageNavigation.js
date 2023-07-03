@@ -3,7 +3,7 @@ import './page-navigation.css';
 import { Link } from 'react-router-dom';
 import  {useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-const PageNavigation = ({pageName}) => {
+const PageNavigation = ({categoryId, productId}) => {
 
   // const [link, setLink] = useState(filteredCategory)  
 
@@ -39,11 +39,8 @@ const PageNavigation = ({pageName}) => {
   return (
     <div className='page-navigation'>
        <Link to="/" className='page-navigation__link'>Homepage / </Link> 
-       {
-        pageName.map((c) => 
-          <Link to="/category" className='page-navigation__link active' key={c.name}>{c.name}</Link>
-        )
-       }
+        { categoryId && <Link to={categoryId} className='page-navigation__link active' key={categoryId}>{categoryId}</Link> }
+
     </div>
   )
 }

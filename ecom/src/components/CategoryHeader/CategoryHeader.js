@@ -2,11 +2,12 @@ import React from "react";
 import GridIcon from '../../assets/ic-grid.svg';
 import ListIcon from "../../assets/ic-list.svg";
 import "./category-header.css"
-const CategoryHeader = ({ category, count }) => {
+const CategoryHeader = ({ category, count, categoryId }) => {
   count = 117;
+  
   return (
     <div className="category-header">
-      <h2 className="category-header__header">Fruit and vegetables</h2>
+      <h2 className="category-header__header">{categoryId}</h2>
       <div className="category-header__buttons">
         <div className="category-header__grid">
           <img src={GridIcon} alt="" style={{marginRight: "5px"}}/>

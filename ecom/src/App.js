@@ -3,7 +3,7 @@ import Menu from "./Menu.js";
 import HomePage from "./HomePage.js";
 import Photo from "../src/assets/photo.jpg";
 import Category from "./components/Category/Category.js";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Footer from "./components/Footer/Footer.js";
 import { useState, useEffect } from "react";
 import ProductDetail from "./components/ProductDetail/ProductDetail.js";
@@ -156,8 +156,8 @@ function App() {
 const [pageName, setPageName] = useState('');
 
 
-  const handleCategory = (e) => {
-    const filteredName = categories.filter((c) => c.category === e.target.textContent);
+  const handleCategory = (item) => {
+    const filteredName = categories.filter((c) => c.category === item);
     setCountOfCategories(countCategories(filteredName[0].array))
     // const filteredProducts = textContent.filter((p) => p.array === filteredName[0].category);
     // setFilteredCategory(filteredProducts);
@@ -209,14 +209,25 @@ const [pageName, setPageName] = useState('');
 
   const [currentProduct, setCurrentProduct] = useState([]);
 
-  const handleIdProduct = (e) => {
-    setCurrentProduct(filteredName.filter((f) => f.name === e.target.id) );
+  const handleIdProduct = (name) => {
+    setCurrentProduct(filteredName.filter((f) => f.name === name) );
   };
+
+
+  const ScrollToTop = () => {
+    const {pathname} = useLocation();
+
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname])
+  }
+
 
   return (
     <div className="container">
       <Header categories={categories} basketCounter={basketCounter} />
       <Menu categories={categories} handleCategory={handleCategory} />
+      <ScrollToTop />
       <Routes>
         <Route
           path="/"
@@ -235,7 +246,7 @@ const [pageName, setPageName] = useState('');
           }
         />
         <Route
-          path="/category"
+          path="category/:categoryId"
           element={
             <Category
               countOfCategories={countOfCategories}
@@ -246,7 +257,7 @@ const [pageName, setPageName] = useState('');
           }
         />
         <Route
-          path="/product"
+          path="category/:categoryId/product/:productId"
           element={
             <ProductDetail
               filteredCategory={filteredName}
