@@ -4,7 +4,7 @@ import BasketIcon from '../src/assets/ic-basket.svg'
 import Logo from '../src/assets/logo.svg'
 import Search from '../src/assets/ic-search.svg'
 import { Link } from 'react-router-dom';
-const HeaderSearch = ({categories, basketCounter}) => {
+const HeaderSearch = ({allCategories, basketCounter}) => {
   return (
     <div className='headersearch'>
         <Link to="/" ><img src={Logo} alt="logo" style={{marginTop: "3px"}}/></Link>
@@ -12,7 +12,7 @@ const HeaderSearch = ({categories, basketCounter}) => {
             <select name="category" className='headersearch__select'>
             <option className='headersearch__option' defaultValue >All categories</option>
                 {
-                  categories.map((c) => <option className='headersearch__option' value={c.category} key={c.category}>{c.category}</option>) 
+                  allCategories.map((c) => <option className='headersearch__option' value={c} key={c}>{c}</option>) 
                 }
             </select>
             <input className='headersearch__input' type="text" name="search" placeholder="Search Products, categories ..." />

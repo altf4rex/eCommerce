@@ -5,7 +5,7 @@ import LeftMenuCategoriesBlock from './LeftMenuCategoriesBlock.js'
 import LeftMenuCategoryRating from './LeftMenuCategoryRating'
 
 import LeftMenuCategoryPrice from './LeftMenuCategoryPrice'
-import LeftMenuCategoryButtons from './LeftMenuCategoryButtons'
+
 
 const filteredArray = [
   {brand: "Filtre by brand item 1", id:"1", checked: false},
@@ -19,7 +19,7 @@ const filteredArray = [
 
 
 
-const LeftMenuCategory = ({handleSpecificCategory, countOfCategories, rating, handleRating, filter, handleToggleRating, ratingStarts}) => {
+const LeftMenuCategory = ({handleSpecificCategory, countOfCategories, rating, handleRating, filter, handleToggleRating, ratingStarts, filteredCategory}) => {
   
 const[brandList, setBrandList] = useState(filteredArray);
 
@@ -42,7 +42,9 @@ function handleToggleFilter(brandId, check) {
       <LeftMenuCategoriesBlock
       filter={filter}
       // handleSpecificCategory={handleSpecificCategory}
-      countOfCategories={countOfCategories} />
+      countOfCategories={countOfCategories} 
+      filteredCategory={filteredCategory}
+      />
       <LeftMenuBrendBlock
       filter={brandList}
       handleToggleFilter={handleToggleFilter}/> 
@@ -52,7 +54,7 @@ function handleToggleFilter(brandId, check) {
       ratingStarts={ratingStarts}
        />
       <LeftMenuCategoryPrice />
-      <LeftMenuCategoryButtons />
+       
     </div>
   )
 }

@@ -2,11 +2,11 @@ import React from 'react'
 import LeftMenuHome from './LeftMenuHome.js'
 import BanerRecipe from './BanerRecipe.js'
 
-const FirstComponetHome = ({categories, categoriesContent}) => {
+const FirstComponetHome = ({allCategories, categoriesContent}) => {
   return (
     <div className='first-componet-home'>
         <LeftMenuHome 
-        categories={categories}
+        categories={allCategories}
         content={categoriesContent}
         />
         <div className='banners-recipe'>

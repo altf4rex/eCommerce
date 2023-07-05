@@ -1,6 +1,6 @@
 import React from 'react'
 import RangeSlider from '../Range/RangeSlider'
-
+// import LeftMenuCategoryButtons from './LeftMenuCategoryButtons'
 const LeftMenuCategoryPrice = () => {
   
   return (
@@ -10,9 +10,13 @@ const LeftMenuCategoryPrice = () => {
         <RangeSlider
         min={0}
         max={1000}
-        onChange={({ min, max }) => (console.log("gg"))}
+        onClick={({ min, max }) => (console.log(`${min} and ${max}`))}
         /> 
         </div>
+      <div className='left-menu-buttons'>
+        <div className='left-menu-buttons__apply'>Apply</div>
+        <div className='left-menu-buttons__reset'>Reset</div>
+      </div>
     </div>
   )
 }

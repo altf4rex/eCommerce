@@ -3,7 +3,7 @@ import React from "react";
 const LeftMenuBrendBlock = ({filter, handleToggleFilter}) => {
   return (
     <div className="left-menu__block">
-      <h4 className="left-menu__header">Categories</h4>
+      <h4 className="left-menu__header">Brand</h4>
       {filter.map((f) => (
         <div className="left-menu__brands" key={f.brand}>
           <input

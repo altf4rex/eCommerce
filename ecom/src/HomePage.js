@@ -5,11 +5,11 @@ import ThirdComponentHome from './ThirdComponentHome.js'
 import Reviews from './Reviews.js'
 import BlogPost from './BlogPost.js'
 
-const HomePage = ({categories, products, categoriesContent, productsContent, productsCard, productsContentFermers, farmerProducts, reviewContent}) => {
+const HomePage = ({ allCategories, products, categoriesContent, productsContent, productsCard, productsContentFermers, farmerProducts, reviewContent}) => {
   return (
     <div>
         <FirstComponetHome
-         categories={categories}
+         allCategories={allCategories}
          categoriesContent={categoriesContent}
          />
         <SecondComponetHome 

@@ -40,7 +40,8 @@ const PageNavigation = ({categoryId, productId}) => {
     <div className='page-navigation'>
        <Link to="/" className='page-navigation__link'>Homepage / </Link> 
         { categoryId && <Link to={categoryId} className='page-navigation__link active' key={categoryId}>{categoryId}</Link> }
-
+        { productId && <Link to={productId} className='page-navigation__link active' key={productId}>{productId}</Link> }
+        
     </div>
   )
 }

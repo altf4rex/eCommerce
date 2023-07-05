@@ -1,12 +1,12 @@
 import React from 'react'
 import Headertop from './Headertop.js'
 import HeaderSearch from './HeaderSearch.js'
-const Header = ({categories, basketCounter}) => {
+const Header = ({allCategories, basketCounter}) => {
   return (
     <header className='header'>
         <Headertop />
         <HeaderSearch
-         categories={categories} 
+         allCategories={allCategories} 
          basketCounter={basketCounter}
         />
     </header>

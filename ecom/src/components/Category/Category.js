@@ -124,22 +124,40 @@ const [filteredSpecificCategory, setFilteredSpecificCategory] = useState(
   () => JSON.parse(localStorage.getItem("specificFilter")) || filteredCategory
 );
 
-useEffect(() => {
-  return () => localStorage.removeItem("specificFilter");
-}, []);
+
 
 useEffect(() => {
   filteredProducts();
 }, [filteredCategories, filteredCategory]);
 
+useEffect(() => {
+  // Сбросить значения фильтрации при изменении категории
+  setFilteredCategories({
+    categories: "All",
+    rating: {
+      "rating-1": false,
+      "rating-2": false,
+      "rating-3": false,
+      "rating-4": false,
+      "rating-5": false,
+    },
+  });
+  setFilteredSpecificCategory(filteredCategory);
 
-const { categoryId, productId  } = useParams();
+  // Запуск фильтрации продуктов
+  filteredProducts();
+}, [filteredCategory]);
 
+useEffect(() => {
+  return () => localStorage.removeItem("specificFilter");
+}, []);
+
+ const { categoryId } = useParams();
+  //  <PageNavigation categoryId={categoryId} />
   return (
     <div>
-      <PageNavigation 
-      productId={productId}
-      categoryId={categoryId} />
+       
+ 
       <CategoryHeader categoryId={categoryId}/>
       <CategoryFilter /> 
       <div style={{display:'flex', padding: "64px 0"}}>
@@ -152,6 +170,7 @@ const { categoryId, productId  } = useParams();
         rating={rating}
         countOfCategories={countOfCategories}
         // handleSpecificCategory={handleSpecificCategory}
+        filteredCategory={filteredCategory}
         />
         <CategoryProducts 
         handleIdProduct={handleIdProduct}

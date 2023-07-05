@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-const LeftMenuCategoriesBlock = ({countOfCategories, handleSpecificCategory, filter}) => {
+const LeftMenuCategoriesBlock = ({countOfCategories, handleSpecificCategory, filter, filteredCategory}) => {
   const [activeButton, setActiveButton] = useState("All");
   
   const handleButtonClick = (name) => {
     setActiveButton(name);
   };
-  
+  useEffect(() => {
+    setActiveButton("All")
+  }, [filteredCategory]);
   return (
     <div>
       <h4 className='left-menu__header'>Categories</h4>

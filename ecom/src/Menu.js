@@ -5,26 +5,26 @@ import { Link, useNavigate, useParams  } from 'react-router-dom';
 
 
 
-const Menu = ({categories, handleCategory}) => {
+const Menu = ({allCategories, handleCategory}) => {
   // const { categoryId } = useParams();
   const navigate = useNavigate();
  
   return (
     <div className='menu'>
         {
-         categories.map((c) =>
+         allCategories.map((c) =>
          <div 
             
              onClick={() => {
               
-              navigate(`category/${c.category}`);
+              navigate(`category/${c}`);
               
-              handleCategory(c.category)
+              handleCategory(c)
              }}
              className='menu__category' 
-             value={c.category}
-             key={c.category}>
-             {c.category}
+             value={c}
+             key={c}>
+             {c}
             
              <img 
              style={{marginBottom: "2px", marginLeft: "2px"} } 

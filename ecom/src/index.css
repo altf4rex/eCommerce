@@ -230,10 +230,12 @@ cursor: pointer;
 }
 
 .banners-recipe{
-  display: flex;
-  justify-content:space-between;
-  flex-wrap: wrap;
-  width: 870px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto, 420px);
+  justify-content: space-around;
+  column-gap: 20px;
+  
 }
   
 

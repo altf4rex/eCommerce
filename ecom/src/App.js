@@ -3,12 +3,14 @@ import Menu from "./Menu.js";
 import HomePage from "./HomePage.js";
 import Photo from "../src/assets/photo.jpg";
 import Category from "./components/Category/Category.js";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, useParams } from "react-router-dom";
 import Footer from "./components/Footer/Footer.js";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import ProductDetail from "./components/ProductDetail/ProductDetail.js";
 
-import categories from './content/data.js';
+// import categories from './content/data.js';
+import products from './content/databetter.js';
+// import PageNavigation from "./components/PageNavigation/PageNavigation.js";
 
 
 const categoriesContent = {
@@ -16,24 +18,24 @@ const categoriesContent = {
   button: "More categories",
 };
 
-const products = [
-  { category: "Kitchen" },
-  { category: "Meat and fish" },
-  { category: "Special nutrition" },
-  { category: "Pharmacy" },
-  { category: "Baby" },
-  { category: "Fruit and vegetables" },
-  { category: "Drinks" },
-  { category: "Me" },
+const bestSelling  = [
+  "Kitchen" ,
+   "Meat and fish",
+   "Special nutrition",
+   "Pharmacy",
+   "Baby",
+   "Fruit and vegetables",
+   "Drinks",
+   "Me",
 ];
 
 const farmerProducts = [
-  { category: "Carrots" },
-  { category: "Tomatoes" },
-  { category: "Potatoes" },
-  { category: "Chicken" },
-  { category: "Pork" },
-  { category: "Fruit and vegetables" },
+   "Carrots" ,
+   "Tomatoes" ,
+   "Potatoes" ,
+   "Chicken" ,
+   "Pork" ,
+   "Fruit and vegetables",
 ];
 
 const productsContent = {
@@ -109,37 +111,26 @@ const questionContent = [
 
 const basketCounter = 4;
 
+// const allCategories = Object.keys(products);
+
+
+
+
+
 function App() {
-  // const [filteredCategory, setFilteredCategory] = useState(null);
-  // const handleCategory = (e) => {
-  //   setFilteredCategory(categories.filter(c => c.name === e.target.textContent));
-  // };
 
-  // idk
+  const allCategories = useMemo(() => {
+    return Object.keys(products);
+  }, [products]);
 
-  // const [filteredCategory, setFilteredCategory] = useState(null);
-  // const handleCategory = (e) => {
-  //   const category = categories.filter(c => c.name === e.target.textContent)[0];
-  //   localStorage.setItem('selectedCategory', JSON.stringify(category));
-  //   setFilteredCategory(category);
-  // };
+  
 
-  // useEffect(() => {
-  //   const storedCategory = JSON.parse(localStorage.getItem('selectedCategory'));
-  //   setFilteredCategory(storedCategory);
-
-  //   return () => {
-  //     filteredCategory(null);
-  //   };
-  // }, [filteredCategory]);
-
-  function countCategories(products) {
-    const categories = {"All": products.length};
+  function countCategories(productdsArray) {
+    const categories = {"All": productdsArray.length};
   
     // Перебираем каждый объект в массиве продуктов
-    products.forEach(product => {
+    productdsArray.forEach(product => {
       const category = product.category;
-      
       // Если категория уже существует в объекте categories, увеличиваем ее счетчик на 1
       if (categories.hasOwnProperty(category)) {
         categories[category] += 1;
@@ -148,7 +139,6 @@ function App() {
         categories[category] = 1;
       }
     });
-  
     // Возвращаем объект categories, содержащий количество уникальных категорий и их количества
     return categories;
   }
@@ -157,51 +147,29 @@ const [pageName, setPageName] = useState('');
 
 
   const handleCategory = (item) => {
-    const filteredName = categories.filter((c) => c.category === item);
-    setCountOfCategories(countCategories(filteredName[0].array))
-    // const filteredProducts = textContent.filter((p) => p.array === filteredName[0].category);
-    // setFilteredCategory(filteredProducts);
-    
-    setFilteredName(filteredName[0].array);
-    setPageName(filteredName[0].category);
-    // localStorage.setItem("filteredProducts", JSON.stringify(filteredProducts));
-    localStorage.setItem("filteredName", JSON.stringify(filteredName[0].array));
+    const filteredCategory = allCategories.filter((p) => p === item);
+    setCountOfCategories(countCategories(products[filteredCategory]))
+    setFilteredCategory(products[filteredCategory]);
+    setPageName(products[filteredCategory]);
+    localStorage.setItem("filteredCategory", JSON.stringify(products[filteredCategory]));
   };
   
-  // const handleSpecificCategory = (e) => {
-  //   const filteredSpecificName = filteredName.filter((a) => a.category === e.target.textContent);
-  //   // const filteredProducts = textContent.filter((p) => p.array === filteredName[0].category);
-  //   // setFilteredCategory(filteredProducts);
-  //   setFilteredSpecificName(filteredSpecificName);
-  //   // localStorage.setItem("filteredProducts", JSON.stringify(filteredProducts));
-  //   localStorage.setItem("filteredSpecificName", JSON.stringify(filteredSpecificName));
-  // };
 
-  // const [filteredCategory, setFilteredCategory] = useState(
-  //   JSON.parse(localStorage.getItem("filteredProducts")) || null
-    
-  // );
-  const [filteredName, setFilteredName] = useState(
-    JSON.parse(localStorage.getItem("filteredName")) || null
+  const [filteredCategory, setFilteredCategory] = useState(
+    JSON.parse(localStorage.getItem("filteredCategory")) || null
     
   );
-  // const [filteredSpecificName, setFilteredSpecificName] = useState(
-  //   JSON.parse(localStorage.getItem("filteredSpecificName")) || null
-    
-  // );
+
 
   useEffect(() => {
-    return () => localStorage.removeItem("filteredName");
+    return () => localStorage.removeItem("filteredCategory");
   }, []);
 
   const [countOfCategories, setCountOfCategories] = useState(
     JSON.parse(localStorage.getItem("countOfCategories")) || 0
     
   );
-  // const [filteredSpecificName, setFilteredSpecificName] = useState(
-  //   JSON.parse(localStorage.getItem("filteredSpecificName")) || null
-    
-  // );
+  
 
   useEffect(() => {
     return () => localStorage.removeItem("countOfCategories");
@@ -210,7 +178,7 @@ const [pageName, setPageName] = useState('');
   const [currentProduct, setCurrentProduct] = useState([]);
 
   const handleIdProduct = (name) => {
-    setCurrentProduct(filteredName.filter((f) => f.name === name) );
+    setCurrentProduct(filteredCategory.filter((f) => f.name === name) );
   };
 
 
@@ -222,20 +190,25 @@ const [pageName, setPageName] = useState('');
     }, [pathname])
   }
 
-
+ 
   return (
     <div className="container">
-      <Header categories={categories} basketCounter={basketCounter} />
-      <Menu categories={categories} handleCategory={handleCategory} />
+      <Header 
+      allCategories={allCategories} 
+      basketCounter={basketCounter} />
+      <Menu 
+      allCategories={allCategories} 
+      handleCategory={handleCategory} />
+      
       <ScrollToTop />
       <Routes>
         <Route
           path="/"
           element={
             <HomePage
-            pageName={pageName}
-              categories={categories}
-              products={products}
+            // pageName={pageName}
+              allCategories={allCategories}
+              products={bestSelling}
               categoriesContent={categoriesContent}
               productsContent={productsContent}
               productsCard={productsCard}
@@ -245,13 +218,14 @@ const [pageName, setPageName] = useState('');
             />
           }
         />
+        
         <Route
           path="category/:categoryId"
           element={
             <Category
               countOfCategories={countOfCategories}
-              productsCardList={filteredName}
-              filteredCategory={filteredName}
+              productsCardList={filteredCategory}
+              filteredCategory={filteredCategory}
               handleIdProduct={handleIdProduct}
             />
           }
@@ -260,7 +234,7 @@ const [pageName, setPageName] = useState('');
           path="category/:categoryId/product/:productId"
           element={
             <ProductDetail
-              filteredCategory={filteredName}
+              filteredCategory={filteredCategory}
               currentProduct={currentProduct}
               reviewContent={reviewContent}
               questionContent={questionContent}
