@@ -1,98 +1,88 @@
-import React, { useCallback, useEffect, useState, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import './range.css'
+const RangeSlider = ({ defmin, defmax }) => {
+  
+    const [min, setMin] = useState(defmin);
+    const [max, setMax] = useState(defmax);
+  
+    const handleMinChange = (e) => {
+      const value = parseInt(e.target.value);
+      if (value < max) {
+        setMin(value);
+      }
+    };
+  
+    const handleMaxChange = (e) => {
+      const value = parseInt(e.target.value);
+      if (value > min) {
+        setMax(value);
+      }
+    };
+    
+    // const handleMinInput = (e) => {
+    //   const value = parseInt(e.target.value);
+    //   if (value < max) {
+    //     setMin(value);
+    //   } 
+    // };
+  
+    // const handleMaxInput  = (e) => {
+    //   const value = parseInt(e.target.value);
+    //   if (value > min) {
+    //     setMax(value);
+    //   } 
+    // };
 
-import "./range.css"
-function RangeSlider({ min, max, onChange }) {
-  const [minVal, setMinVal] = useState(min);
-  const [maxVal, setMaxVal] = useState(max);
-  const minValRef = useRef(min);
-  const maxValRef = useRef(max);
-  const range = useRef(null);
-
-  // Convert to percentage
-  const getPercent = useCallback(
-    (value) => Math.round(((value - min) / (max - min)) * 100),
-    [min, max]
-  );
-
-  // Set width of the range to decrease from the left side
   useEffect(() => {
-    const minPercent = getPercent(minVal);
-    const maxPercent = getPercent(maxValRef.current);
-
-    if (range.current) {
-      range.current.style.left = `${minPercent}%`;
-      range.current.style.width = `${maxPercent - minPercent}%`;
-    }
-  }, [minVal, getPercent]);
-
-  // Set width of the range to decrease from the right side
-  useEffect(() => {
-    const minPercent = getPercent(minValRef.current);
-    const maxPercent = getPercent(maxVal);
-
-    if (range.current) {
-      range.current.style.width = `${maxPercent - minPercent}%`;
-    }
-  }, [maxVal, getPercent]);
-
-  // Get min and max values when their state changes
-  useEffect(() => {
-    onChange({ min: minVal, max: maxVal });
-  }, [minVal, maxVal, onChange]);
+    setMin(defmin);
+    setMax(defmax);
+  }, [defmin, defmax]);
 
   return (
-    <div style={{marginTop:"16px"}}>
-      <input
-        type="range"
-        min={min}
-        max={max}
-        value={minVal}
-        onChange={(event) => {
-          const value = Math.min(Number(event.target.value), maxVal - 1);
-          setMinVal(value);
-          minValRef.current = value;
-        }}
-        className="thumb thumb--left"
-        style={{ zIndex: minVal > max - 100 && "5" }}
-      />
-      <input
-        type="range"
-        min={min}
-        max={max}
-        value={maxVal}
-        onChange={(event) => {
-          const value = Math.max(Number(event.target.value), minVal + 1);
-          setMaxVal(value);
-          maxValRef.current = value;
-        }}
-        className="thumb thumb--right"
-      />
-
+    <div className="wrapper">
+      <div className="price-input">
+        <div className="field">
+          <p className="min-max">Min $</p>
+          <input
+            type="number"
+            className="input-min"
+            value={min}
+            onInput={(e) => setMin(e.target.value)}
+          />
+        </div>
+        <div className="separator">-</div>
+        <div className="field">
+          <p className="min-max">Max $</p>
+          <input
+            type="number"
+            className="input-max"
+            value={max}
+            onInput={(e) => setMax(e.target.value)}
+          />
+        </div>
+      </div>
       <div className="slider">
-        <div className="slider__track" />
-        <div ref={range} className="slider__range" />
-        <div className="slider__left-value">
-          <input
-            value={minVal}
-            min={min}
-            max={max}
-            style={{ width: "40px", height: "25px", marginLeft: "-10px" }}
-            onChange={(e) => {
-              setMinVal(e.target.value);
-            }}
-          />
-        </div>
-        <div className="slider__right-value">
-          <input
-            value={maxVal}
-            min={min - 1}
-            max={max}
-            style={{ width: "40px", height: "25px", marginLeft: "-10px" }}
-            onChange={(e) => {
-              setMaxVal(e.target.value);
-            }}
-          />
-        </div>
+        <div className="progress" style={{ left: min < 0 ? 0 : `${min}%`, right: max > 100 ? 100 : `${100 - max}%` }}></div>
+      </div>
+      <div className="range-input">
+        <input
+          type="range"
+          className="range-min"
+          min="0"
+          max="100"
+          value={min}
+          onInput={handleMinChange}
+          step="1"
+        />
+        <input
+          type="range"
+          className="range-max"
+          min="0"
+          max="100"
+          value={max}
+          onInput={handleMaxChange}
+          step="1"
+        />
       </div>
     </div>
   );

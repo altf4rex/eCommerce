@@ -8,7 +8,6 @@ const products =
                 description: "Space for a small product description",
                 rating: RaitingFive,
                 ratingId: "rating-5",
-                id: Date.now(),
                 reviewCount: "1",
                 fullDescription:
                   "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
@@ -499,7 +498,7 @@ const products =
                 name: "Fish",
                 description: "Space for a small product description",
                 rating: RaitingFive,
-              ratingId: "rating-5",
+              ratingId: "rating-3",
               id: Date.now(),
                 reviewCount: "1",
                 fullDescription:
