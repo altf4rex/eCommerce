@@ -11,7 +11,7 @@ const products =
                 reviewCount: "1",
                 fullDescription:
                   "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-                discountPrice: "36.99USD",
+                discountPrice: 36.99,
                 price: "48.56USD",
                 src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
                 fresheness: "New (Extra fresh)",
@@ -58,7 +58,7 @@ const products =
                 reviewCount: "1",
                 fullDescription:
                   "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-                discountPrice: "36.99USD",
+                  discountPrice: 36.99,
                 price: "48.56USD",
                 src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
                 fresheness: "New (Extra fresh)",
@@ -102,12 +102,12 @@ const products =
             name: "Mango",
             description: "Space for a small product description",
             rating: RaitingFive,
-            ratingId: "rating-5",
+            ratingId: "rating-4",
             id: Date.now(),
             reviewCount: "1",
             fullDescription:
               "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-            discountPrice: "36.99USD",
+            discountPrice: 36.99,
             price: "48.56USD",
             src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
             fresheness: "New (Extra fresh)",
@@ -169,7 +169,7 @@ const products =
             reviewCount: "1",
             fullDescription:
               "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-            discountPrice: "36.99USD",
+            discountPrice: 32.99,
             price: "48.56USD",
             src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
             fresheness: "New (Extra fresh)",
@@ -216,7 +216,7 @@ const products =
             reviewCount: "1",
             fullDescription:
               "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-            discountPrice: "36.99USD",
+            discountPrice: 30.99,
             price: "48.56USD",
             src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
             fresheness: "New (Extra fresh)",
@@ -265,7 +265,7 @@ const products =
             reviewCount: "1",
             fullDescription:
               "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-            discountPrice: "36.99USD",
+            discountPrice: 60,
             price: "48.56USD",
             src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
             fresheness: "New (Extra fresh)",
@@ -312,7 +312,7 @@ const products =
             reviewCount: "1",
             fullDescription:
               "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-            discountPrice: "36.99USD",
+            discountPrice: 6,
             price: "48.56USD",
             src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
             fresheness: "New (Extra fresh)",
@@ -359,7 +359,7 @@ const products =
             reviewCount: "1",
             fullDescription:
               "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-            discountPrice: "36.99USD",
+            discountPrice: 36.99,
             price: "48.56USD",
             src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
             fresheness: "New (Extra fresh)",
@@ -406,7 +406,7 @@ const products =
             reviewCount: "1",
             fullDescription:
               "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-            discountPrice: "36.99USD",
+            discountPrice: 30,
             price: "48.56USD",
             src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
             fresheness: "New (Extra fresh)",
@@ -456,7 +456,7 @@ const products =
                 reviewCount: "1",
                 fullDescription:
                   "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-                discountPrice: "36.99USD",
+                discountPrice: 36.99,
                 price: "48.56USD",
                 src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
                 fresheness: "New (Extra fresh)",
@@ -503,7 +503,7 @@ const products =
                 reviewCount: "1",
                 fullDescription:
                   "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-                discountPrice: "36.99USD",
+                discountPrice: 36.99,
                 price: "48.56USD",
                 src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
                 fresheness: "New (Extra fresh)",
@@ -553,7 +553,7 @@ const products =
                 reviewCount: "1",
                 fullDescription:
                   "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
-                discountPrice: "36.99USD",
+                discountPrice: 36.99,
                 price: "48.56USD",
                 src: "https://frutco.ch/wp-content/uploads/2020/05/3-4_Mango_Content-986x1024.jpg",
                 fresheness: "New (Extra fresh)",

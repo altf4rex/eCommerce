@@ -1,43 +1,7 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React from "react";
 import './range.css'
-const RangeSlider = ({ defmin, defmax }) => {
+const RangeSlider = ({ handleMinChange, handleMaxChange, handleMinField, handleMaxField, min, max }) => {
   
-    const [min, setMin] = useState(defmin);
-    const [max, setMax] = useState(defmax);
-  
-    const handleMinChange = (e) => {
-      const value = parseInt(e.target.value);
-      if (value < max) {
-        setMin(value);
-      }
-    };
-  
-    const handleMaxChange = (e) => {
-      const value = parseInt(e.target.value);
-      if (value > min) {
-        setMax(value);
-      }
-    };
-    
-    // const handleMinInput = (e) => {
-    //   const value = parseInt(e.target.value);
-    //   if (value < max) {
-    //     setMin(value);
-    //   } 
-    // };
-  
-    // const handleMaxInput  = (e) => {
-    //   const value = parseInt(e.target.value);
-    //   if (value > min) {
-    //     setMax(value);
-    //   } 
-    // };
-
-  useEffect(() => {
-    setMin(defmin);
-    setMax(defmax);
-  }, [defmin, defmax]);
-
   return (
     <div className="wrapper">
       <div className="price-input">
@@ -47,7 +11,7 @@ const RangeSlider = ({ defmin, defmax }) => {
             type="number"
             className="input-min"
             value={min}
-            onInput={(e) => setMin(e.target.value)}
+            onInput={handleMinField}
           />
         </div>
         <div className="separator">-</div>
@@ -57,7 +21,7 @@ const RangeSlider = ({ defmin, defmax }) => {
             type="number"
             className="input-max"
             value={max}
-            onInput={(e) => setMax(e.target.value)}
+            onInput={handleMaxField}
           />
         </div>
       </div>

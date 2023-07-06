@@ -75,6 +75,8 @@ const [filteredCategories, setFilteredCategories] = useState({
     "rating-4": false,
     "rating-5": false,
   },
+  minPrice: "All",
+  maxPrice: "All"
 });
 
 const handleRatingToggle = (ratingId) => {
@@ -94,6 +96,15 @@ const filter = (e) => {
   }));
 };
 
+
+const handlePriceApply = (min, max) => {
+  setFilteredCategories((prevState) => ({
+    ...prevState,
+    minPrice: min,
+    maxPrice: max,
+  }));
+};
+
 const filteredProducts = () => {
   let specificFilter = filteredCategory;
   
@@ -102,6 +113,13 @@ const filteredProducts = () => {
       (a) => a.category === filteredCategories.categories
     );
   }
+  // price range filtering
+  if (filteredCategories.minPrice !== "All" && filteredCategories.maxPrice !== "All") {
+    specificFilter = specificFilter.filter(
+      (a) => ((a.discountPrice <= filteredCategories.maxPrice) && (a.discountPrice >= filteredCategories.minPrice))
+    );
+  }
+
   let previousSort = [];
 
   for (let ratingId in filteredCategories.rating) {
@@ -111,6 +129,8 @@ const filteredProducts = () => {
     }
   }
   
+
+
   if (previousSort.length > 0) {
     specificFilter = previousSort;
   } 
@@ -141,6 +161,8 @@ useEffect(() => {
       "rating-4": false,
       "rating-5": false,
     },
+    minPrice: "All",
+    maxPrice: "All"
   });
   setFilteredSpecificCategory(filteredCategory);
 
@@ -161,7 +183,9 @@ useEffect(() => {
       <CategoryHeader categoryId={categoryId}/>
       <CategoryFilter /> 
       <div style={{display:'flex', padding: "64px 0"}}>
-        <LeftMenuCategory 
+        <LeftMenuCategory
+        handlePriceApply={handlePriceApply}
+        // handlePriceReset={handlePriceReset} 
         filter={filter}
         ratingStarts={ratingStarts}
         filteredProducts={filteredProducts}

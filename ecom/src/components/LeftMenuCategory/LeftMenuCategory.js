@@ -19,7 +19,7 @@ const filteredArray = [
 
 
 
-const LeftMenuCategory = ({handleSpecificCategory, countOfCategories, rating, handleRating, filter, handleToggleRating, ratingStarts, filteredCategory}) => {
+const LeftMenuCategory = ({handlePriceApply, handlePriceReset, handleSpecificCategory, countOfCategories, rating, handleRating, filter, handleToggleRating, ratingStarts, filteredCategory}) => {
   
 const[brandList, setBrandList] = useState(filteredArray);
 
@@ -53,7 +53,10 @@ function handleToggleFilter(brandId, check) {
       handleToggleRating={handleToggleRating}
       ratingStarts={ratingStarts}
        />
-      <LeftMenuCategoryPrice />
+      <LeftMenuCategoryPrice
+      handlePriceApply={handlePriceApply}
+      handlePriceReset={handlePriceReset}
+      />
        
     </div>
   )
