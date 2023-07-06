@@ -32,6 +32,8 @@ const Category = ({filteredCategory, handleIdProduct, countOfCategories, product
   // const productsPerPage = 5; // количество продуктов на странице
   // const startIndex = (currentPage - 1) * productsPerPage;
   // const endIndex = startIndex + productsPerPage;
+
+
   // const currentProducts = productsCardList.slice(startIndex, endIndex);
 
   // const [currentProduct, setCurrentProduct] = useState(5);
@@ -40,6 +42,16 @@ const Category = ({filteredCategory, handleIdProduct, countOfCategories, product
   // };
   
   // const currentProducts = productsCardList.slice(0, currentProduct);
+  
+  
+  
+  const [currentProduct, setCurrentProduct] = useState(5);
+  const handleMore = () => {
+    setCurrentProduct(currentProduct + 5);
+  };
+
+  const [isNeedButton, setisNeedButton] = useState(true);
+
   const rating = [
     {src: RatingFive, id: "rating-5", checked: false},
     {src: RatingFour, id: "rating-4", checked: false},
@@ -50,6 +62,8 @@ const Category = ({filteredCategory, handleIdProduct, countOfCategories, product
 
   
 const[ratingStarts, setRatingStarts] = useState(rating);
+
+
 
 function handleToggleRating(ratingId, check) {
   handleRatingToggle(ratingId);
@@ -105,6 +119,14 @@ const handlePriceApply = (min, max) => {
   }));
 };
 
+const handlePriceReset = (min, max) => {
+  setFilteredCategories((prevState) => ({
+    ...prevState,
+    minPrice: min,
+    maxPrice: max,
+  }));
+}
+
 const filteredProducts = () => {
   let specificFilter = filteredCategory;
   
@@ -121,19 +143,28 @@ const filteredProducts = () => {
   }
 
   let previousSort = [];
-
+  let countTrue = 0;
   for (let ratingId in filteredCategories.rating) {
     if (filteredCategories.rating[ratingId]) {
       const ratingArray = specificFilter.filter((r) => r.ratingId === ratingId);
       previousSort.push(...ratingArray);
-    }
+      countTrue++;
+    } 
   }
   
-
+if(previousSort.length === 0 && countTrue > 0){
+  specificFilter = [];
+}
 
   if (previousSort.length > 0) {
     specificFilter = previousSort;
-  } 
+  }
+
+  if(specificFilter.length > 5){
+    specificFilter = specificFilter.slice(0, currentProduct);
+  } else {
+    setisNeedButton(false)
+  }
   
   
   setFilteredSpecificCategory(specificFilter);
@@ -148,7 +179,7 @@ const [filteredSpecificCategory, setFilteredSpecificCategory] = useState(
 
 useEffect(() => {
   filteredProducts();
-}, [filteredCategories, filteredCategory]);
+}, [filteredCategories, filteredCategory, currentProduct]);
 
 useEffect(() => {
   // Сбросить значения фильтрации при изменении категории
@@ -165,7 +196,9 @@ useEffect(() => {
     maxPrice: "All"
   });
   setFilteredSpecificCategory(filteredCategory);
-
+  setRatingStarts(rating);
+  setCurrentProduct(5);
+  setisNeedButton(true);
   // Запуск фильтрации продуктов
   filteredProducts();
 }, [filteredCategory]);
@@ -185,7 +218,7 @@ useEffect(() => {
       <div style={{display:'flex', padding: "64px 0"}}>
         <LeftMenuCategory
         handlePriceApply={handlePriceApply}
-        // handlePriceReset={handlePriceReset} 
+        handlePriceReset={handlePriceReset} 
         filter={filter}
         ratingStarts={ratingStarts}
         filteredProducts={filteredProducts}
@@ -202,7 +235,8 @@ useEffect(() => {
         /> 
       </div>
       <ButtonMoreProducts 
-      // handleMore={handleMore}
+      isNeedButton={isNeedButton}
+       handleMore={handleMore}
       // goToNextPage={goToNextPage}
       // goToPreviousPage={goToPreviousPage}
       // currentPage={currentPage}

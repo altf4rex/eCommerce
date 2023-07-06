@@ -4,6 +4,7 @@ const products =
         "Bakery": [
             {
                 name: "notmango",
+                brand: "SmT",
                 id: Date.now(), 
                 description: "Space for a small product description",
                 rating: RaitingFive,
@@ -51,6 +52,7 @@ const products =
               },
             {
                 name: "notmango1",
+                brand: "HiH",
                 description: "Space for a small product description",
                 rating: RaitingFive,
               ratingId: "rating-5",
@@ -401,7 +403,7 @@ const products =
             name: "NotMango6",
             description: "Space for a small product description",
             rating: RaitingFive,
-            ratingId: "rating-5",
+            ratingId: "rating-4",
             id: Date.now(),
             reviewCount: "1",
             fullDescription:

@@ -49,11 +49,13 @@ function handleToggleFilter(brandId, check) {
       filter={brandList}
       handleToggleFilter={handleToggleFilter}/> 
       <LeftMenuCategoryRating
+      
       filter={filter}
       handleToggleRating={handleToggleRating}
       ratingStarts={ratingStarts}
        />
       <LeftMenuCategoryPrice
+      filteredCategory={filteredCategory}
       handlePriceApply={handlePriceApply}
       handlePriceReset={handlePriceReset}
       />

@@ -5,11 +5,11 @@ import ArrowDown from '../../assets/arrow-down-white.svg';
 // import {Link} from 'react-router-dom';
 // import { sculptureList } from './data.js';
 
-const ButtonMoreProducts = ({handleMore, goToNextPage, goToPreviousPage, currentPage, endIndex, productsCardList }) => {
+const ButtonMoreProducts = ({isNeedButton, handleMore, goToNextPage, goToPreviousPage, currentPage, endIndex, productsCardList }) => {
   
   return (
     
-    <div className='button'>
+    <div className='button' style={{ display: isNeedButton ? "block" : "none" }}>
       {/* <button onClick={goToPreviousPage} disabled={currentPage === 1}>Предыдущая страница</button>
       <button onClick={goToNextPage} disabled={endIndex >= productsCardList.length}>Следующая страница</button> */}
     <div 

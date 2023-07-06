@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import RangeSlider from '../Range/RangeSlider'
 
 
-function LeftMenuCategoryPrice({handlePriceApply, handlePriceReset}) {
+function LeftMenuCategoryPrice({filteredCategory, handlePriceApply, handlePriceReset}) {
  const defmin = 25;
  const defmax = 75;
 
@@ -38,7 +38,7 @@ function LeftMenuCategoryPrice({handlePriceApply, handlePriceReset}) {
 useEffect(() => {
  setMin(defmin);
  setMax(defmax);
-}, [defmin, defmax]);
+}, [defmin, defmax, filteredCategory]);
 
   return (
     <div className="left-menu__block">
