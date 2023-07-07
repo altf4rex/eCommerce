@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
-const LeftMenuBrendBlock = ({filter, handleToggleFilter}) => {
+const LeftMenuBrendBlock = ({brandList, handleToggleBrand}) => {
+
+  // const [isChecked, setIsChecked] = useState(false);
+
+  // const sorted = brandList.reduce((accumulator, value) => {
+  //   if (!accumulator.includes(value.brand)) {
+  //     accumulator.push(value.brand);
+  //   }
+  //   return accumulator;
+  // }, []);
+  
+
   return (
     <div className="left-menu__block">
       <h4 className="left-menu__header">Brand</h4>
-      {filter.map((f) => (
+      {brandList.map((f) => (
         <div className="left-menu__brands" key={f.brand}>
           <input
             type="checkbox"
@@ -12,9 +23,9 @@ const LeftMenuBrendBlock = ({filter, handleToggleFilter}) => {
             className="left-menu__checkbox"
             name={f.brand}
             checked={f.checked}
-            id={f.id}
+            id={f.brand}
             onChange={(e) => {
-              handleToggleFilter(f.id, e.target.checked);
+              handleToggleBrand(f.brand, e.target.checked);
             }}
           ></input>
           <p className="left-menu__brands-name">{f.brand}</p>

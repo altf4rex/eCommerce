@@ -228,7 +228,7 @@ background: #F5F5F5;
 border-radius: 12px;
 cursor: pointer;
 }
-
+/* 
 .banners-recipe{
   margin: 0 auto;
   display: grid;
@@ -236,8 +236,15 @@ cursor: pointer;
   justify-content: space-around;
   column-gap: 20px;
   
-}
+} */
+
+.banners-recipe{
+  display: flex;
+  justify-content:space-between;
+  flex-wrap: wrap;
+  width: 870px;
   
+}
 
 .baner-recipe__name{
   margin-bottom: 8px;

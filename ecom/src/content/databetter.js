@@ -1,11 +1,12 @@
 import RaitingFive from "../assets/rating-4-black.svg";
+import { v4 as uuidv4 } from 'uuid';
 const products = 
     {
         "Bakery": [
             {
                 name: "notmango",
                 brand: "SmT",
-                id: Date.now(), 
+                id: uuidv4(), 
                 description: "Space for a small product description",
                 rating: RaitingFive,
                 ratingId: "rating-5",
@@ -56,7 +57,7 @@ const products =
                 description: "Space for a small product description",
                 rating: RaitingFive,
               ratingId: "rating-5",
-              id: Date.now(),
+              id: uuidv4(), 
                 reviewCount: "1",
                 fullDescription:
                   "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
@@ -102,10 +103,11 @@ const products =
         "Fruit and vegetables": [
             {
             name: "Mango",
+            brand: "HiH",
             description: "Space for a small product description",
             rating: RaitingFive,
             ratingId: "rating-4",
-            id: Date.now(),
+            id: uuidv4(), 
             reviewCount: "1",
             fullDescription:
               "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
@@ -164,10 +166,11 @@ const products =
           },
           {
             name: "Mango1",
+            brand: "HiH",
             description: "Space for a small product description",
             rating: RaitingFive,
             ratingId: "rating-5",
-            id: Date.now(),
+            id: uuidv4(), 
             reviewCount: "1",
             fullDescription:
               "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
@@ -211,10 +214,11 @@ const products =
           },
           {
             name: "Mango2",
+            brand: "TnT",
             description: "Space for a small product description",
             rating: RaitingFive,
             ratingId: "rating-5",
-            id: Date.now(),
+            id: uuidv4(), 
             reviewCount: "1",
             fullDescription:
               "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
@@ -260,10 +264,11 @@ const products =
           },
           {
             name: "Mango3",
+            brand: "Brand",
             description: "Space for a small product description",
             rating: RaitingFive,
             ratingId: "rating-5",
-            id: Date.now(),
+            id: uuidv4(), 
             reviewCount: "1",
             fullDescription:
               "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
@@ -307,10 +312,11 @@ const products =
           },
           {
             name: "Mango4",
+            brand: "Brand",
             description: "Space for a small product description",
             rating: RaitingFive,
             ratingId: "rating-5",
-            id: Date.now(),
+            id: uuidv4(), 
             reviewCount: "1",
             fullDescription:
               "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
@@ -354,10 +360,11 @@ const products =
           },
           {
             name: "NotMango5",
+            brand: "Hmmm",
             description: "Space for a small product description",
             rating: RaitingFive,
             ratingId: "rating-5",
-            id: Date.now(),
+            id: uuidv4(), 
             reviewCount: "1",
             fullDescription:
               "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
@@ -401,10 +408,11 @@ const products =
           },
           {
             name: "NotMango6",
+            brand: "OtherHmmmm",
             description: "Space for a small product description",
             rating: RaitingFive,
             ratingId: "rating-4",
-            id: Date.now(),
+            id: uuidv4(), 
             reviewCount: "1",
             fullDescription:
               "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
@@ -450,11 +458,12 @@ const products =
         "Meat and fish": [
             {
                 name: "Meat",
+                brand: "OtherHmmmm",
                 description: "Space for a small product description",
                 rating: RaitingFive,
               
                 ratingId: "rating-5",
-                id: Date.now(),
+                id: uuidv4(), 
                 reviewCount: "1",
                 fullDescription:
                   "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
@@ -498,10 +507,11 @@ const products =
               },
             {
                 name: "Fish",
+                brand: "OtherHmmmm",
                 description: "Space for a small product description",
                 rating: RaitingFive,
               ratingId: "rating-3",
-              id: Date.now(),
+              id: uuidv4(), 
                 reviewCount: "1",
                 fullDescription:
                   "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
@@ -547,11 +557,12 @@ const products =
         "Drinks": [
             {
                 name: "Drink",
+                brand: "CoraRora",
                 description: "Space for a small product description",
                 rating: RaitingFive,
               
                 ratingId: "rating-5",
-                id: Date.now(),
+                id: uuidv4(), 
                 reviewCount: "1",
                 fullDescription:
                   "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",
@@ -595,10 +606,11 @@ const products =
               },
             {
                 name: "Dr",
+                brand: "CoraRora",
                 description: "Space for a small product description",
                 rating: RaitingFive,
               ratingId: "rating-5",
-              id: Date.now(),
+              id: uuidv4(), 
                 reviewCount: "1",
                 fullDescription:
                   "Mango from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s mango are growing on the fields naturally.",

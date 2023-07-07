@@ -7,34 +7,16 @@ import LeftMenuCategoryRating from './LeftMenuCategoryRating'
 import LeftMenuCategoryPrice from './LeftMenuCategoryPrice'
 
 
-const filteredArray = [
-  {brand: "Filtre by brand item 1", id:"1", checked: false},
-  {brand: "Filtre by brand item 2", id:"2", checked: false},
-  {brand: "Filtre by brand item 3", id:"3", checked: false},
-  {brand: "Filtre by brand item 4", id:"4", checked: false},
-  {brand: "Filtre by brand item 5", id:"5", checked: false}
-]
 
 
 
 
 
-const LeftMenuCategory = ({handlePriceApply, handlePriceReset, handleSpecificCategory, countOfCategories, rating, handleRating, filter, handleToggleRating, ratingStarts, filteredCategory}) => {
+
+const LeftMenuCategory = ({brandList, handlePriceApply, handlePriceReset, handleSpecificCategory, handleToggleBrand, countOfCategories, rating, handleRating, filter, handleToggleRating, ratingStarts, filteredCategory}) => {
   
-const[brandList, setBrandList] = useState(filteredArray);
 
-function handleToggleFilter(brandId, check) {
-  setBrandList(brandList.map((b) => {
-    if (b.id === brandId) {
-      // Create a *new* object with changes
-      return { ...b, checked: check};
-    } else {
-      // No changes
-      return b;
-    }
-    
-  }));
-}
+
 
 
   return (
@@ -46,10 +28,9 @@ function handleToggleFilter(brandId, check) {
       filteredCategory={filteredCategory}
       />
       <LeftMenuBrendBlock
-      filter={brandList}
-      handleToggleFilter={handleToggleFilter}/> 
+      brandList={brandList}
+      handleToggleBrand={handleToggleBrand}/> 
       <LeftMenuCategoryRating
-      
       filter={filter}
       handleToggleRating={handleToggleRating}
       ratingStarts={ratingStarts}

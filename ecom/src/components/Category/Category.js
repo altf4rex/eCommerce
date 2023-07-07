@@ -43,8 +43,26 @@ const Category = ({filteredCategory, handleIdProduct, countOfCategories, product
   
   // const currentProducts = productsCardList.slice(0, currentProduct);
   
+  // const[brandList, setBrandList] = useState(
+  //   filteredCategory.map(c => c.brand ? {brand: c.brand, id: c.id, checked: false} : {})
+  // );
   
+
+  const [brandList, setBrandList] = useState([]);
+
+  useEffect(() => {
+    setBrandList(
+      filteredCategory.reduce((accumulator, value) => {
+        if (!accumulator.find(item => item.brand === value.brand)) {
+          accumulator.push(value);
+        }
+        return accumulator;
+      }, [])
+    );
+  }, [filteredCategory]);
+
   
+
   const [currentProduct, setCurrentProduct] = useState(5);
   const handleMore = () => {
     setCurrentProduct(currentProduct + 5);
@@ -82,6 +100,7 @@ function handleToggleRating(ratingId, check) {
 
 const [filteredCategories, setFilteredCategories] = useState({
   categories: "All",
+  brandList: brandList,
   rating: {
     "rating-1": false,
     "rating-2": false,
@@ -93,6 +112,33 @@ const [filteredCategories, setFilteredCategories] = useState({
   maxPrice: "All"
 });
 
+
+
+// const filteredArray = [
+//   {brand: , id:"1", checked: false},
+//   {brand: "Filtre by brand item 2", id:"2", checked: false},
+//   {brand: "Filtre by brand item 3", id:"3", checked: false},
+//   {brand: "Filtre by brand item 4", id:"4", checked: false},
+//   {brand: "Filtre by brand item 5", id:"5", checked: false}
+// ]
+
+
+
+function handleToggleBrand(brand, check) {
+  setBrandList(brandList.map((b) => {
+    if (b.brand === brand) {
+      // Create a *new* object with changes
+      return { ...b, checked: check};
+    } else {
+      // No changes
+      return b;
+    }
+  }));
+}
+
+
+
+
 const handleRatingToggle = (ratingId) => {
   setFilteredCategories((prevState) => ({
     ...prevState,
@@ -102,6 +148,7 @@ const handleRatingToggle = (ratingId) => {
     },
   }));
 };
+
 
 const filter = (e) => {
   setFilteredCategories((prevState) => ({
@@ -142,23 +189,42 @@ const filteredProducts = () => {
     );
   }
 
-  let previousSort = [];
-  let countTrue = 0;
+  let previousSortBrend = [];
+  let countTrueBrend = 0;
+  
+  for (let brand in filteredCategories.brandList.brandList) {
+    if (filteredCategories.brandList[brand]) {
+      const ratingArray = specificFilter.filter((r) => r.brand === brand);
+      previousSortBrend.push(...ratingArray);
+      countTrueBrend++;
+    } 
+  }
+    
+  if(previousSortBrend.length === 0 && countTrueBrend > 0){
+    specificFilter = [];
+  }
+  if (previousSortBrend.length > 0) {
+    specificFilter = previousSortBrend;
+  }
+  
+
+  let previousSortRating = [];
+  let countTrueRating= 0;
+
   for (let ratingId in filteredCategories.rating) {
     if (filteredCategories.rating[ratingId]) {
       const ratingArray = specificFilter.filter((r) => r.ratingId === ratingId);
-      previousSort.push(...ratingArray);
-      countTrue++;
+      previousSortRating.push(...ratingArray);
+      countTrueRating++;
     } 
   }
   
-if(previousSort.length === 0 && countTrue > 0){
+if(previousSortRating.length === 0 && countTrueRating > 0){
   specificFilter = [];
 }
-
-  if (previousSort.length > 0) {
-    specificFilter = previousSort;
-  }
+if (previousSortRating.length > 0) {
+  specificFilter = previousSortRating;
+}
 
   if(specificFilter.length > 5){
     specificFilter = specificFilter.slice(0, currentProduct);
@@ -166,7 +232,8 @@ if(previousSort.length === 0 && countTrue > 0){
     setisNeedButton(false)
   }
   
-  
+ 
+
   setFilteredSpecificCategory(specificFilter);
   localStorage.setItem("specificFilter", JSON.stringify(specificFilter));
 };
@@ -185,6 +252,7 @@ useEffect(() => {
   // Сбросить значения фильтрации при изменении категории
   setFilteredCategories({
     categories: "All",
+    brandList: brandList,
     rating: {
       "rating-1": false,
       "rating-2": false,
@@ -199,6 +267,14 @@ useEffect(() => {
   setRatingStarts(rating);
   setCurrentProduct(5);
   setisNeedButton(true);
+  setBrandList(
+    filteredCategory.reduce((accumulator, value) => {
+      if (!accumulator.find(item => item.brand === value.brand)) {
+        accumulator.push(value);
+      }
+      return accumulator;
+    }, [])
+  );
   // Запуск фильтрации продуктов
   filteredProducts();
 }, [filteredCategory]);
@@ -211,15 +287,15 @@ useEffect(() => {
   //  <PageNavigation categoryId={categoryId} />
   return (
     <div>
-       
- 
       <CategoryHeader categoryId={categoryId}/>
       <CategoryFilter /> 
       <div style={{display:'flex', padding: "64px 0"}}>
         <LeftMenuCategory
+        filter={filter}
+        handleToggleBrand={handleToggleBrand}
         handlePriceApply={handlePriceApply}
         handlePriceReset={handlePriceReset} 
-        filter={filter}
+        brandList={brandList}
         ratingStarts={ratingStarts}
         filteredProducts={filteredProducts}
         handleToggleRating={handleToggleRating}
