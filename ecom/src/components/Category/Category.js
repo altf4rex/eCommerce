@@ -48,18 +48,30 @@ const Category = ({filteredCategory, handleIdProduct, countOfCategories, product
   // );
   
 
-  const [brandList, setBrandList] = useState([]);
+  
+    const brandList = filteredCategory.reduce((accumulator, value) => {
+      if (!accumulator.find(item => item.brand === value.brand)) {
+        accumulator.push({brand: value.brand, check: false });
+      }
+      return accumulator;
+    }, [])
 
-  useEffect(() => {
-    setBrandList(
-      filteredCategory.reduce((accumulator, value) => {
-        if (!accumulator.find(item => item.brand === value.brand)) {
-          accumulator.push(value);
-        }
-        return accumulator;
-      }, [])
-    );
-  }, [filteredCategory]);
+
+    // NE PON WHY WE NEED ALL OBJECK NOT BREND and checked wtf
+   // console.log('BRANDLIST', brandList )
+
+    const [filteredBrandList, setFilteredBrandList] = useState(brandList)
+
+  // useEffect(() => {
+  //   setBrandList(
+  //     filteredCategory.reduce((accumulator, value) => {
+  //       if (!accumulator.find(item => item.brand === value.brand)) {
+  //         accumulator.push(value);
+  //       }
+  //       return accumulator;
+  //     }, [])
+  //   );
+  // }, [filteredCategory]);
 
   
 
@@ -93,14 +105,30 @@ function handleToggleRating(ratingId, check) {
       // No changes
       return r;
     }
-    
   }));
-  
 }
+
+
+function handleToggleBrand(brand, check) {
+  setFilteredBrandList(filteredBrandList.map((b) => {
+   
+    if (b.brand === brand) {
+      // Create a *new* object with changes
+      return { ...b, check: check};
+    } else {
+      // No changes
+      return b;
+    }
+  }));
+  //filteredProducts();
+  //setFilteredCategories(prevState)
+}
+
+
 
 const [filteredCategories, setFilteredCategories] = useState({
   categories: "All",
-  brandList: brandList,
+  brandList: filteredBrandList,
   rating: {
     "rating-1": false,
     "rating-2": false,
@@ -122,19 +150,6 @@ const [filteredCategories, setFilteredCategories] = useState({
 //   {brand: "Filtre by brand item 5", id:"5", checked: false}
 // ]
 
-
-
-function handleToggleBrand(brand, check) {
-  setBrandList(brandList.map((b) => {
-    if (b.brand === brand) {
-      // Create a *new* object with changes
-      return { ...b, checked: check};
-    } else {
-      // No changes
-      return b;
-    }
-  }));
-}
 
 
 
@@ -192,13 +207,14 @@ const filteredProducts = () => {
   let previousSortBrend = [];
   let countTrueBrend = 0;
   
-  for (let brand in filteredCategories.brandList.brandList) {
-    if (filteredCategories.brandList[brand]) {
-      const ratingArray = specificFilter.filter((r) => r.brand === brand);
+  filteredBrandList.map(f => {
+    if (f.check) {
+      const ratingArray = specificFilter.filter((r) => r.brand === f.brand);
       previousSortBrend.push(...ratingArray);
       countTrueBrend++;
     } 
-  }
+  })
+    
     
   if(previousSortBrend.length === 0 && countTrueBrend > 0){
     specificFilter = [];
@@ -228,6 +244,7 @@ if (previousSortRating.length > 0) {
 
   if(specificFilter.length > 5){
     specificFilter = specificFilter.slice(0, currentProduct);
+    setisNeedButton(true)
   } else {
     setisNeedButton(false)
   }
@@ -246,13 +263,13 @@ const [filteredSpecificCategory, setFilteredSpecificCategory] = useState(
 
 useEffect(() => {
   filteredProducts();
-}, [filteredCategories, filteredCategory, currentProduct]);
+}, [filteredCategories, filteredCategory, currentProduct, filteredBrandList]);
 
 useEffect(() => {
   // Сбросить значения фильтрации при изменении категории
   setFilteredCategories({
     categories: "All",
-    brandList: brandList,
+    brandList: filteredBrandList,
     rating: {
       "rating-1": false,
       "rating-2": false,
@@ -267,14 +284,7 @@ useEffect(() => {
   setRatingStarts(rating);
   setCurrentProduct(5);
   setisNeedButton(true);
-  setBrandList(
-    filteredCategory.reduce((accumulator, value) => {
-      if (!accumulator.find(item => item.brand === value.brand)) {
-        accumulator.push(value);
-      }
-      return accumulator;
-    }, [])
-  );
+  setFilteredBrandList(brandList);
   // Запуск фильтрации продуктов
   filteredProducts();
 }, [filteredCategory]);
@@ -295,7 +305,7 @@ useEffect(() => {
         handleToggleBrand={handleToggleBrand}
         handlePriceApply={handlePriceApply}
         handlePriceReset={handlePriceReset} 
-        brandList={brandList}
+        brandList={filteredBrandList}
         ratingStarts={ratingStarts}
         filteredProducts={filteredProducts}
         handleToggleRating={handleToggleRating}

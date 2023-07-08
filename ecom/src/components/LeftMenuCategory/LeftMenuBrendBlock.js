@@ -15,20 +15,21 @@ const LeftMenuBrendBlock = ({brandList, handleToggleBrand}) => {
   return (
     <div className="left-menu__block">
       <h4 className="left-menu__header">Brand</h4>
-      {brandList.map((f) => (
-        <div className="left-menu__brands" key={f.brand}>
+      {brandList.map((b) => (
+        <div className="left-menu__brands" key={b.brand}>
           <input
             type="checkbox"
             style={{marginTop: "0.5px"}}
             className="left-menu__checkbox"
-            name={f.brand}
-            checked={f.checked}
-            id={f.brand}
+            name={b.brand}
+            checked={b.check}
+            id={b.brand}
             onChange={(e) => {
-              handleToggleBrand(f.brand, e.target.checked);
+              handleToggleBrand(b.brand, e.target.checked);
+             
             }}
           ></input>
-          <p className="left-menu__brands-name">{f.brand}</p>
+          <p className="left-menu__brands-name">{b.brand}</p>
         </div>
       ))}
     </div>
