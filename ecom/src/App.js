@@ -9,33 +9,32 @@ import { useState, useEffect, useMemo } from "react";
 import ProductDetail from "./components/ProductDetail/ProductDetail.js";
 
 // import categories from './content/data.js';
-import products from './content/databetter.js';
+import products from "./content/databetter.js";
 // import PageNavigation from "./components/PageNavigation/PageNavigation.js";
-
 
 const categoriesContent = {
   header: "Category menu",
   button: "More categories",
 };
 
-const bestSelling  = [
-  "Kitchen" ,
-   "Meat and fish",
-   "Special nutrition",
-   "Pharmacy",
-   "Baby",
-   "Fruit and vegetables",
-   "Drinks",
-   "Me",
+const bestSelling = [
+  "Kitchen",
+  "Meat and fish",
+  "Special nutrition",
+  "Pharmacy",
+  "Baby",
+  "Fruit and vegetables",
+  "Drinks",
+  "Me",
 ];
 
 const farmerProducts = [
-   "Carrots" ,
-   "Tomatoes" ,
-   "Potatoes" ,
-   "Chicken" ,
-   "Pork" ,
-   "Fruit and vegetables",
+  "Carrots",
+  "Tomatoes",
+  "Potatoes",
+  "Chicken",
+  "Pork",
+  "Fruit and vegetables",
 ];
 
 const productsContent = {
@@ -102,7 +101,6 @@ const reviewContent = [
   },
 ];
 
-
 const questionContent = [
   { question: "What about.... idk?", id: Date.now(), answer: "mmm... idk" },
   { question: "What about.... idk?", id: Date.now(), answer: "mmm... idk" },
@@ -113,23 +111,16 @@ const basketCounter = 4;
 
 // const allCategories = Object.keys(products);
 
-
-
-
-
 function App() {
-
   const allCategories = useMemo(() => {
     return ["All categories", ...Object.keys(products)];
   }, [products]);
 
-  
-
   function countCategories(productdsArray) {
-    const categories = {"All": productdsArray.length};
-  
+    const categories = { All: productdsArray.length };
+
     // Перебираем каждый объект в массиве продуктов
-    productdsArray.forEach(product => {
+    productdsArray.forEach((product) => {
       const category = product.category;
       // Если категория уже существует в объекте categories, увеличиваем ее счетчик на 1
       if (categories.hasOwnProperty(category)) {
@@ -143,38 +134,40 @@ function App() {
     return categories;
   }
 
-const [pageName, setPageName] = useState('');
-
+  const [pageName, setPageName] = useState("");
 
   const handleCategory = (item) => {
-if(item === "All categories"){
-  const grabAll = []
-  allCategories.forEach((p) => {
-    if("All categories" !== p){
-      grabAll.push(...products[p])
+    if (item === "All categories") {
+      const grabAll = [];
+      allCategories.forEach((p) => {
+        if ("All categories" !== p) {
+          grabAll.push(...products[p]);
+        }
+      });
+      setFilteredCategory(grabAll);
+      setCountOfCategories(countCategories(grabAll));
+      localStorage.setItem("filteredCategory", JSON.stringify(grabAll));
     }
-    
-  });
-  setFilteredCategory(grabAll);
-  setCountOfCategories(countCategories(grabAll))
-  localStorage.setItem("filteredCategory", JSON.stringify(grabAll));
-}
-    if(products.hasOwnProperty(item)){
-      const filteredCategory = allCategories.filter((p) => p.toLowerCase() === item.toLowerCase());
-      setCountOfCategories(countCategories(products[filteredCategory]))
+    if (products.hasOwnProperty(item)) {
+      const filteredCategory = allCategories.filter(
+        (p) => p.toLowerCase() === item.toLowerCase()
+      );
+      setCountOfCategories(countCategories(products[filteredCategory]));
       setFilteredCategory(products[filteredCategory]);
       setPageName(products[filteredCategory]);
-      localStorage.setItem("filteredCategory", JSON.stringify(products[filteredCategory]));
+      localStorage.setItem(
+        "filteredCategory",
+        JSON.stringify(products[filteredCategory])
+      );
     }
-    
   };
 
   function searchProducts(searchTerm) {
-
     const searchResults = [];
-  
+    
     for (const category in products) {
-      const categoryProducts = products[category];
+      const categoryProducts = Object.values(products[category]);
+      
       const filteredProducts = categoryProducts.filter((product) => {
         // Поиск по названию продукта или категории
         return (
@@ -182,18 +175,17 @@ if(item === "All categories"){
           product.category.toLowerCase().includes(searchTerm.toLowerCase())
         );
       });
-  
+      
       searchResults.push(...filteredProducts);
     }
-  
-    return searchResults;
+    
+    setFilteredCategory(searchResults);
+    localStorage.setItem("filteredCategory", JSON.stringify(searchResults));
   }
 
   const [filteredCategory, setFilteredCategory] = useState(
     JSON.parse(localStorage.getItem("filteredCategory")) || null
-    
   );
-
 
   useEffect(() => {
     return () => localStorage.removeItem("filteredCategory");
@@ -201,9 +193,7 @@ if(item === "All categories"){
 
   const [countOfCategories, setCountOfCategories] = useState(
     JSON.parse(localStorage.getItem("countOfCategories")) || 0
-    
   );
-  
 
   useEffect(() => {
     return () => localStorage.removeItem("countOfCategories");
@@ -212,37 +202,34 @@ if(item === "All categories"){
   const [currentProduct, setCurrentProduct] = useState([]);
 
   const handleIdProduct = (name) => {
-    setCurrentProduct(filteredCategory.filter((f) => f.name === name) );
+    setCurrentProduct(filteredCategory.filter((f) => f.name === name));
   };
 
-
   const ScrollToTop = () => {
-    const {pathname} = useLocation();
+    const { pathname } = useLocation();
 
     useEffect(() => {
       window.scrollTo(0, 0);
-    }, [pathname])
-  }
+    }, [pathname]);
+  };
 
- 
   return (
     <div className="container">
-      <Header 
-      handleCategory={handleCategory}
-      searchProducts={searchProducts}
-      allCategories={allCategories} 
-      basketCounter={basketCounter} />
-      <Menu 
-      allCategories={allCategories} 
-      handleCategory={handleCategory} />
-      
+      <Header
+        handleCategory={handleCategory}
+        searchProducts={searchProducts}
+        allCategories={allCategories}
+        basketCounter={basketCounter}
+      />
+      <Menu allCategories={allCategories} handleCategory={handleCategory} />
+
       <ScrollToTop />
       <Routes>
         <Route
           path="/"
           element={
             <HomePage
-            // pageName={pageName}
+              // pageName={pageName}
               allCategories={allCategories}
               products={bestSelling}
               categoriesContent={categoriesContent}
@@ -254,7 +241,7 @@ if(item === "All categories"){
             />
           }
         />
-        
+
         <Route
           path="category/:categoryId"
           element={

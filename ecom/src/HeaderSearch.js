@@ -48,13 +48,19 @@ const HeaderSearch = ({
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
               e.preventDefault();
-              console.log(e.target.value);
+             
               searchProducts(e.target.value);
               navigate(`category/${e.target.value}`);
             }
           }}
         />
-        <button className="headersearch__search-button" type="button">
+        <button className="headersearch__search-button" type="button"
+        onClick={() => {
+          const inputValue = document.querySelector('.headersearch__input').value;
+          searchProducts(inputValue);
+          navigate(`category/${inputValue}`);
+        }}
+        >
           <img src={Search} alt="" />
         </button>
       </form>
