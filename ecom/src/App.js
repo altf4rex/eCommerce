@@ -120,7 +120,7 @@ const basketCounter = 4;
 function App() {
 
   const allCategories = useMemo(() => {
-    return Object.keys(products);
+    return ["All categories", ...Object.keys(products)];
   }, [products]);
 
   
@@ -147,13 +147,47 @@ const [pageName, setPageName] = useState('');
 
 
   const handleCategory = (item) => {
-    const filteredCategory = allCategories.filter((p) => p === item);
-    setCountOfCategories(countCategories(products[filteredCategory]))
-    setFilteredCategory(products[filteredCategory]);
-    setPageName(products[filteredCategory]);
-    localStorage.setItem("filteredCategory", JSON.stringify(products[filteredCategory]));
+if(item === "All categories"){
+  const grabAll = []
+  allCategories.forEach((p) => {
+    if("All categories" !== p){
+      grabAll.push(...products[p])
+    }
+    
+  });
+  setFilteredCategory(grabAll);
+  setCountOfCategories(countCategories(grabAll))
+  localStorage.setItem("filteredCategory", JSON.stringify(grabAll));
+}
+    if(products.hasOwnProperty(item)){
+      const filteredCategory = allCategories.filter((p) => p.toLowerCase() === item.toLowerCase());
+      setCountOfCategories(countCategories(products[filteredCategory]))
+      setFilteredCategory(products[filteredCategory]);
+      setPageName(products[filteredCategory]);
+      localStorage.setItem("filteredCategory", JSON.stringify(products[filteredCategory]));
+    }
+    
   };
+
+  function searchProducts(searchTerm) {
+
+    const searchResults = [];
   
+    for (const category in products) {
+      const categoryProducts = products[category];
+      const filteredProducts = categoryProducts.filter((product) => {
+        // Поиск по названию продукта или категории
+        return (
+          product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          product.category.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      });
+  
+      searchResults.push(...filteredProducts);
+    }
+  
+    return searchResults;
+  }
 
   const [filteredCategory, setFilteredCategory] = useState(
     JSON.parse(localStorage.getItem("filteredCategory")) || null
@@ -194,6 +228,8 @@ const [pageName, setPageName] = useState('');
   return (
     <div className="container">
       <Header 
+      handleCategory={handleCategory}
+      searchProducts={searchProducts}
       allCategories={allCategories} 
       basketCounter={basketCounter} />
       <Menu 
