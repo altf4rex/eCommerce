@@ -259,6 +259,11 @@ const [filteredSpecificCategory, setFilteredSpecificCategory] = useState(
   () => JSON.parse(localStorage.getItem("specificFilter")) || filteredCategory
 );
 
+// switching Grid
+const [isGrid, setIsGrid] = useState(false);
+const handleGrid = () => {
+  setIsGrid(!isGrid);
+}
 
 
 useEffect(() => {
@@ -297,7 +302,11 @@ useEffect(() => {
   //  <PageNavigation categoryId={categoryId} />
   return (
     <div>
-      <CategoryHeader categoryId={categoryId}/>
+      <CategoryHeader
+      
+      handleGrid={handleGrid}
+      categoryId={categoryId}
+      isGrid={isGrid} />
       <CategoryFilter /> 
       <div style={{display:'flex', padding: "64px 0"}}>
         <LeftMenuCategory
@@ -316,8 +325,10 @@ useEffect(() => {
         filteredCategory={filteredCategory}
         />
         <CategoryProducts 
+        
         handleIdProduct={handleIdProduct}
         currentProducts={filteredSpecificCategory}
+        isGrid={isGrid}
         /> 
       </div>
       <ButtonMoreProducts 

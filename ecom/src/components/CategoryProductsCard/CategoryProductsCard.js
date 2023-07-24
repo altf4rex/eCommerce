@@ -31,7 +31,7 @@ const CategoryProductsCard = ({currentProducts, handleIdProduct}) => {
                 </div>
             </div>
             <div className="category-products-card__card-right">
-              <p className="category-products-card__card-discount-price">{p.discountPrice}</p>
+              <p className="category-products-card__card-discount-price">{p.discountPrice}USD</p>
               <p className="category-products-card__card-price">{p.price}</p>
               <p className="category-products-card__card-shipping">Free Shipping</p>
               <p className="category-products-card__card-shipping-days">Delivery in 1 day</p>

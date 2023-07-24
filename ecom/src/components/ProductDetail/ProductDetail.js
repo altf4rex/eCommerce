@@ -70,7 +70,7 @@ const ProductDetail = ({ currentProduct, reviewContent, questionContent, filtere
         <div className="product-detail__purchase-container">
           <div>
             <p className="product-detail__discount-price">
-              {product.discountPrice}
+              {product.discountPrice}USD
             </p>
             <p className="product-detail__price">{product.price}</p>
           </div>

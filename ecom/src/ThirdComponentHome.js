@@ -2,7 +2,7 @@ import React from 'react'
 import ProductCard from './ProductCard.js'
 import LeftMenuHome from './LeftMenuHome.js'
 
-const ThirdComponentHome = ({ productsCard, productsContentFermers, farmerProducts}) => {
+const ThirdComponentHome = ({currentProducts, products, productsCard, productsContentFermers, farmerProducts, handleIdProduct}) => {
   return (
     <div className='third-componet-home'>
         <LeftMenuHome
@@ -11,7 +11,8 @@ const ThirdComponentHome = ({ productsCard, productsContentFermers, farmerProduc
         />
         <div className='third-componet-home__cards'>
           <ProductCard
-           productsCard={productsCard}
+          handleIdProduct={handleIdProduct}
+           currentProducts={currentProducts}
            />
         </div>
         

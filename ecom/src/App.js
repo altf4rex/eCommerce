@@ -112,6 +112,10 @@ const basketCounter = 4;
 // const allCategories = Object.keys(products);
 
 function App() {
+
+  const currentProducts = products["Fruit and vegetables"].slice(0,3);
+
+
   const allCategories = useMemo(() => {
     return ["All categories", ...Object.keys(products)];
   }, [products]);
@@ -203,7 +207,14 @@ function App() {
 
   const handleIdProduct = (name) => {
     setCurrentProduct(filteredCategory.filter((f) => f.name === name));
+    
   };
+  
+
+
+useEffect(() => {
+  handleCategory("All categories");
+}, []);
 
   const ScrollToTop = () => {
     const { pathname } = useLocation();
@@ -212,6 +223,8 @@ function App() {
       window.scrollTo(0, 0);
     }, [pathname]);
   };
+
+
 
   return (
     <div className="container">
@@ -229,9 +242,12 @@ function App() {
           path="/"
           element={
             <HomePage
+            handleCategory={handleCategory}
+            handleIdProduct={handleIdProduct}
               // pageName={pageName}
               allCategories={allCategories}
-              products={bestSelling}
+              currentProducts={currentProducts}
+              bestSelling={bestSelling}
               categoriesContent={categoriesContent}
               productsContent={productsContent}
               productsCard={productsCard}
@@ -254,7 +270,7 @@ function App() {
           }
         />
         <Route
-          path="category/:categoryId/product/:productId"
+          path="category?/:categoryId?/product/:productId"
           element={
             <ProductDetail
               filteredCategory={filteredCategory}
